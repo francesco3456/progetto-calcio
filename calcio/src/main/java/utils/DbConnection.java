@@ -6,11 +6,18 @@ import java.sql.SQLException;
 
 public class DbConnection {
 	
+    private String username = AppConfig.getDbUsername();
+    private String password = AppConfig.getDbPassword();
+    private String url = AppConfig.getDbUrl();
+    private String driver = AppConfig.getDbDriver();
+	
+	/*
 	private String username = "root";
-	private String password = "ciaoroot";
+	private String password = "Ciaoroot";
 	private String url = "jdbc:mysql://localhost:3306/calcioVersion2";
 	private String driver = "com.mysql.cj.jdbc.Driver";
-	private ClassSingleton singletonInstance;
+	*/
+    private ClassSingleton singletonInstance;
 
 	public DbConnection() {
 		this.singletonInstance = ClassSingleton.getInstance();

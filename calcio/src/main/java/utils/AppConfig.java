@@ -9,7 +9,7 @@ public class AppConfig {
     private static final Properties properties = new Properties();
 
     static {
-        try (InputStream input = AppConfig.class.getResourceAsStream("/config.properties")) {
+        try (InputStream input = AppConfig.class.getResourceAsStream("/resources/config.properties")) {
             if (input == null) {
                 System.err.println("config.properties not found!");
             } else {
