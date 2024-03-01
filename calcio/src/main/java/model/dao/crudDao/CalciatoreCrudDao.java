@@ -10,19 +10,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.bean.CalciatoreBean;
 import model.daoInterface.CrudDao;
+import model.dto.CalciatoreDto;
 import utils.DbConnection;
 
-public class CalciatoreCrudDao implements CrudDao<CalciatoreBean> {
+public class CalciatoreCrudDao implements CrudDao<CalciatoreDto> {
 
 	DbConnection dbConn = new DbConnection();
 
 	@Override
-	public List<CalciatoreBean> findAll() {
+	public List<CalciatoreDto> findAll() {
 
 		Connection conn = dbConn.getConnection();
-		List<CalciatoreBean> calciatori = new ArrayList<>();
+		List<CalciatoreDto> calciatori = new ArrayList<>();
 		
 		String query = "SELECT * FROM calciatore";
 		Statement st = null;
@@ -32,7 +32,7 @@ public class CalciatoreCrudDao implements CrudDao<CalciatoreBean> {
 			ResultSet rs = st.executeQuery(query);
 			
 			while(rs.next()) {
-				CalciatoreBean calciatore = new CalciatoreBean();
+				CalciatoreDto calciatore = new CalciatoreDto();
 				
 				calciatore.setIdCalciatore(rs.getLong("id_calciatore"));
 				calciatore.setNome(rs.getString("nome"));
@@ -59,10 +59,10 @@ public class CalciatoreCrudDao implements CrudDao<CalciatoreBean> {
 	}
 	
 	@Override
-	public CalciatoreBean findById(Long id) {
+	public CalciatoreDto findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		CalciatoreBean calciatore = new CalciatoreBean();
+		CalciatoreDto calciatore = new CalciatoreDto();
 		
 		String query = "SELECT * FROM calciatore WHERE id_calciatore = ?";
 		PreparedStatement ps = null;
@@ -103,10 +103,10 @@ public class CalciatoreCrudDao implements CrudDao<CalciatoreBean> {
 	}
 	
 	@Override
-	public CalciatoreBean update(Long id) {
+	public CalciatoreDto update(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		CalciatoreBean calciatore = new CalciatoreBean();
+		CalciatoreDto calciatore = new CalciatoreDto();
 		
 		String query = "UPDATE calciatore SET nome = ?, cognome = ?, età = ?, altezza = ?, nazionalità = ?, peso = ?, ruolo = ?, squadra = ?, data_modifica = ? WHERE id_calciatore = ?";
 		PreparedStatement ps = null;
@@ -135,10 +135,10 @@ public class CalciatoreCrudDao implements CrudDao<CalciatoreBean> {
 	}
 	
 	@Override
-	public CalciatoreBean insert() {
+	public CalciatoreDto insert() {
 		
 		Connection conn = dbConn.getConnection();
-		CalciatoreBean calciatore = new CalciatoreBean();
+		CalciatoreDto calciatore = new CalciatoreDto();
 		
 		String query = "INSERT INTO calciatore (nome, cognome, età, altezza, nazionalità, peso, ruolo, squadra, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?))";
 		PreparedStatement ps = null;

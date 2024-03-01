@@ -12,19 +12,19 @@ import java.util.List;
 
 import com.mysql.cj.jdbc.Blob;
 
-import model.bean.SquadraBean;
 import model.daoInterface.CrudDao;
+import model.dto.SquadraDto;
 import utils.DbConnection;
 
-public class SquadraCrudDao implements CrudDao<SquadraBean> {
+public class SquadraCrudDao implements CrudDao<SquadraDto> {
 	
 	DbConnection dbConn = new DbConnection();
 
 	@Override
-	public List<SquadraBean> findAll() {
+	public List<SquadraDto> findAll() {
 		
 		Connection conn = dbConn.getConnection();
-		List<SquadraBean> squadre = new ArrayList<>();
+		List<SquadraDto> squadre = new ArrayList<>();
 		
 		String query = "SELECT * FROM squadra WHERE id_squadra = ?";
 		Statement st = null;
@@ -35,7 +35,7 @@ public class SquadraCrudDao implements CrudDao<SquadraBean> {
 			rs = st.executeQuery(query);
 			
 			while(rs.next()) {
-				SquadraBean squadra = new SquadraBean();
+				SquadraDto squadra = new SquadraDto();
 				
 				squadra.setIdSquadra(rs.getLong("id_squadra"));
 				squadra.setNomeSquadra(rs.getString("nome"));
@@ -58,10 +58,10 @@ public class SquadraCrudDao implements CrudDao<SquadraBean> {
 	}
 
 	@Override
-	public SquadraBean update(Long id) {
+	public SquadraDto update(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		SquadraBean squadra = new SquadraBean();
+		SquadraDto squadra = new SquadraDto();
 		
 		String query = "UPDATE FROM squadra SET nome = ?, nazionalità = ?, nascita = ?, stadio = ?, città = ?, stemma = ?, data_modifica = ? WHERE id_squadra = ?";
 		PreparedStatement ps = null;
@@ -110,10 +110,10 @@ public class SquadraCrudDao implements CrudDao<SquadraBean> {
 	}
 
 	@Override
-	public SquadraBean insert() {
+	public SquadraDto insert() {
 		
 		Connection conn = dbConn.getConnection();
-		SquadraBean squadra = new SquadraBean();
+		SquadraDto squadra = new SquadraDto();
 		
 		String query = "INSERT INTO squadra (nome, nazionalità, nascita, stadio, città, stemma, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;
@@ -140,10 +140,10 @@ public class SquadraCrudDao implements CrudDao<SquadraBean> {
 	}
 
 	@Override
-	public SquadraBean findById(Long id) {
+	public SquadraDto findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		SquadraBean squadra = new SquadraBean();
+		SquadraDto squadra = new SquadraDto();
 		
 		String query = "SELECT * FROM squadra WHERE id_squadra = ?";
 		PreparedStatement ps = null;

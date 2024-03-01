@@ -10,19 +10,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.bean.GiornataBean;
 import model.daoInterface.CrudDao;
+import model.dto.GiornataDto;
 import utils.DbConnection;
 
-public class GiornataCrudDao implements CrudDao<GiornataBean> {
+public class GiornataCrudDao implements CrudDao<GiornataDto> {
 	
 	DbConnection dbConn = new DbConnection();
 
 	@Override
-	public List<GiornataBean> findAll() {
+	public List<GiornataDto> findAll() {
 		
 		Connection conn = dbConn.getConnection();
-		List<GiornataBean> giornate = new ArrayList<>();
+		List<GiornataDto> giornate = new ArrayList<>();
 		
 		String query = "SELECT * FROM giornata";
 		Statement st = null;
@@ -33,7 +33,7 @@ public class GiornataCrudDao implements CrudDao<GiornataBean> {
 			rs = st.executeQuery(query);
 			
 			while(rs.next()) {
-				GiornataBean giornata = new GiornataBean();
+				GiornataDto giornata = new GiornataDto();
 				
 				giornata.setIdGiornata(rs.getLong("id_giornata"));
 				giornata.setInizioGiornata(rs.getTimestamp("inizio").toLocalDateTime());
@@ -52,10 +52,10 @@ public class GiornataCrudDao implements CrudDao<GiornataBean> {
 	}
 
 	@Override
-	public GiornataBean update(Long id) {
+	public GiornataDto update(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		GiornataBean giornata = new GiornataBean();
+		GiornataDto giornata = new GiornataDto();
 		
 		String query = "UPDATE FROM giornata SET inizio = ?, fine = ?, data_modifica = ? WHERE id_giornata = ?";
 		PreparedStatement ps = null;
@@ -99,10 +99,10 @@ public class GiornataCrudDao implements CrudDao<GiornataBean> {
 	}
 
 	@Override
-	public GiornataBean insert() {
+	public GiornataDto insert() {
 		
 		Connection conn = dbConn.getConnection();
-		GiornataBean giornata = new GiornataBean();
+		GiornataDto giornata = new GiornataDto();
 		
 		String query = "INSERT INTO giornata (inizio, fine, data_creazione, data_modifica) VALUES (?, ?, ?, ?)";
 		PreparedStatement ps = null;
@@ -125,10 +125,10 @@ public class GiornataCrudDao implements CrudDao<GiornataBean> {
 	}
 
 	@Override
-	public GiornataBean findById(Long id) {
+	public GiornataDto findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		GiornataBean giornata = new GiornataBean();
+		GiornataDto giornata = new GiornataDto();
 		
 		String query = "SELECT * FROM giornata WHERE id_giornata = ?";
 		PreparedStatement ps = null;

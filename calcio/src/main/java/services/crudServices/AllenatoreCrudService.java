@@ -2,8 +2,8 @@ package services.crudServices;
 
 import java.util.List;
 
-import model.bean.AllenatoreBean;
 import model.dao.crudDao.AllenatoreCrudDao;
+import model.dto.AllenatoreDto;
 
 public class AllenatoreCrudService {
 	
@@ -11,31 +11,31 @@ public class AllenatoreCrudService {
 	
 	
 	
-	public List<AllenatoreBean> findAllAllenatori() {
+	public List<AllenatoreDto> findAllAllenatori() {
 		
-		List<AllenatoreBean> result = allenatoreDao.findAll();
+		List<AllenatoreDto> result = allenatoreDao.findAll();
 		
 		return result;
 		
 	}
 	
-	public AllenatoreBean findById(Long id) {
+	public AllenatoreDto findById(Long id) {
 		
-		AllenatoreBean result = allenatoreDao.findById(id);
-		
-		return result;
-	}
-	
-	public AllenatoreBean updateAllenatore(Long id) {
-		
-		AllenatoreBean result = allenatoreDao.update(id);
+		AllenatoreDto result = allenatoreDao.findById(id);
 		
 		return result;
 	}
 	
-	public AllenatoreBean insertAllenatore() {
+	public AllenatoreDto updateAllenatore(Long id) {
 		
-		AllenatoreBean result = allenatoreDao.insert();
+		AllenatoreDto result = allenatoreDao.update(id);
+		
+		return result;
+	}
+	
+	public AllenatoreDto insertAllenatore() {
+		
+		AllenatoreDto result = allenatoreDao.insert();
 		
 		return result;
 	}

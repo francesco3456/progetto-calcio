@@ -10,19 +10,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.bean.ClassificaBean;
 import model.daoInterface.CrudDao;
+import model.dto.ClassificaDto;
 import utils.DbConnection;
 
-public class ClassificaCrudDao implements CrudDao<ClassificaBean> {
+public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 	
 	DbConnection dbConn = new DbConnection();
 	
 	@Override
-	public List<ClassificaBean> findAll() {
+	public List<ClassificaDto> findAll() {
 		
 		Connection conn = dbConn.getConnection();
-		List<ClassificaBean> punteggi = new ArrayList<>();
+		List<ClassificaDto> punteggi = new ArrayList<>();
 		
 		String query = "SELECT * FROM classifica";
 		Statement st = null;
@@ -33,7 +33,7 @@ public class ClassificaCrudDao implements CrudDao<ClassificaBean> {
 			rs = st.executeQuery(query);
 			
 			while(rs.next()) {
-				ClassificaBean punteggio = new ClassificaBean();
+				ClassificaDto punteggio = new ClassificaDto();
 				
 				punteggio.setIdClassifica(rs.getLong("id_classifica"));
 				punteggio.setPuntiSquadra(rs.getInt("punti"));
@@ -58,10 +58,10 @@ public class ClassificaCrudDao implements CrudDao<ClassificaBean> {
 	}
 	
 	@Override
-	public ClassificaBean findById(Long id) {
+	public ClassificaDto findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		ClassificaBean punteggio = new ClassificaBean();
+		ClassificaDto punteggio = new ClassificaDto();
 		
 		String query = "SELECT * FROM classifica WHERE id_classifica = ?";
 		PreparedStatement ps = null;
@@ -98,10 +98,10 @@ public class ClassificaCrudDao implements CrudDao<ClassificaBean> {
 	}
 	
 	@Override
-	public ClassificaBean update(Long id) {
+	public ClassificaDto update(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		ClassificaBean punteggio = new ClassificaBean();
+		ClassificaDto punteggio = new ClassificaDto();
 		
 		String query = "UPDATE FROM classifica SET punti = ?, gol_fatti = ?, gol_subiti = ?, differenza_reti = ?, win = ?, pari = ?, lose = ?, squadra_fk = ?, data_modifica = ? WHERE id_classifica = ?";
 		PreparedStatement ps = null;
@@ -130,10 +130,10 @@ public class ClassificaCrudDao implements CrudDao<ClassificaBean> {
 	}
 	
 	@Override
-	public ClassificaBean insert() {
+	public ClassificaDto insert() {
 		
 		Connection conn = dbConn.getConnection();
-		ClassificaBean punteggio = new ClassificaBean();
+		ClassificaDto punteggio = new ClassificaDto();
 		
 		String query = "INSERT INTO classifica (punti, gol_fatti, gol_subiti, differenza_reti, win, pari, lose, squadra_fk, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;

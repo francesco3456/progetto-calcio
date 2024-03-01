@@ -2,37 +2,37 @@ package services.crudServices;
 
 import java.util.List;
 
-import model.bean.StatsCalciatoreBean;
 import model.dao.crudDao.StatsCrudDao;
+import model.dto.StatsCalciatoreDto;
 
 public class StatsCalciatoreCrudService {
 	
 	StatsCrudDao statsDao = new StatsCrudDao();
 	
-	public List<StatsCalciatoreBean> findAllStats() {
+	public List<StatsCalciatoreDto> findAllStats() {
 		
-		List<StatsCalciatoreBean> result = statsDao.findAll();
-		
-		return result;
-	}
-	
-	public StatsCalciatoreBean findById(Long id) {
-		
-		StatsCalciatoreBean result = statsDao.findById(id);
+		List<StatsCalciatoreDto> result = statsDao.findAll();
 		
 		return result;
 	}
 	
-	public StatsCalciatoreBean insertStats() {
+	public StatsCalciatoreDto findById(Long id) {
 		
-		StatsCalciatoreBean result = statsDao.insert();
+		StatsCalciatoreDto result = statsDao.findById(id);
 		
 		return result;
 	}
 	
-	public StatsCalciatoreBean updateStats(Long id) {
+	public StatsCalciatoreDto insertStats() {
 		
-		StatsCalciatoreBean result = statsDao.update(id);
+		StatsCalciatoreDto result = statsDao.insert();
+		
+		return result;
+	}
+	
+	public StatsCalciatoreDto updateStats(Long id) {
+		
+		StatsCalciatoreDto result = statsDao.update(id);
 		
 		return result;
 	}

@@ -2,37 +2,37 @@ package services.crudServices;
 
 import java.util.List;
 
-import model.bean.GiornataBean;
 import model.dao.crudDao.GiornataCrudDao;
+import model.dto.GiornataDto;
 
 public class GiornataCrudService {
 	
 	GiornataCrudDao giornataDao = new GiornataCrudDao();
 	
-	public List<GiornataBean> findAllGiornate() {
+	public List<GiornataDto> findAllGiornate() {
 		
-		List<GiornataBean> result = giornataDao.findAll();
-		
-		return result;
-	}
-	
-	public GiornataBean findById(Long id) {
-		
-		GiornataBean result = giornataDao.findById(id);
+		List<GiornataDto> result = giornataDao.findAll();
 		
 		return result;
 	}
 	
-	public GiornataBean insertGiornata() {
+	public GiornataDto findById(Long id) {
 		
-		GiornataBean result = giornataDao.insert();
+		GiornataDto result = giornataDao.findById(id);
 		
 		return result;
 	}
 	
-	public GiornataBean updateGiornata(Long id) {
+	public GiornataDto insertGiornata() {
 		
-		GiornataBean result = giornataDao.update(id);
+		GiornataDto result = giornataDao.insert();
+		
+		return result;
+	}
+	
+	public GiornataDto updateGiornata(Long id) {
+		
+		GiornataDto result = giornataDao.update(id);
 		
 		return result;
 	}

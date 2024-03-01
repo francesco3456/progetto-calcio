@@ -10,19 +10,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.bean.StatsCalciatoreBean;
 import model.daoInterface.CrudDao;
+import model.dto.StatsCalciatoreDto;
 import utils.DbConnection;
 
-public class StatsCrudDao implements CrudDao<StatsCalciatoreBean> {
+public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 	
 	DbConnection dbConn = new DbConnection();
 
 	@Override
-	public List<StatsCalciatoreBean> findAll() {
+	public List<StatsCalciatoreDto> findAll() {
 		
 		Connection conn = dbConn.getConnection();
-		List<StatsCalciatoreBean> statsCalciatori = new ArrayList<>();
+		List<StatsCalciatoreDto> statsCalciatori = new ArrayList<>();
 		
 		String query = "SELECT * FROM stats_calciatore";
 		Statement st = null;
@@ -33,7 +33,7 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreBean> {
 			rs = st.executeQuery(query);
 			
 			while (rs.next()) {
-				StatsCalciatoreBean statsCalciatore = new StatsCalciatoreBean();
+				StatsCalciatoreDto statsCalciatore = new StatsCalciatoreDto();
 				
 				statsCalciatore.setIdStatsCalciatore(rs.getLong("id_stats"));
 				statsCalciatore.setGolCalciatore(rs.getInt("gol_calciatore"));
@@ -53,10 +53,10 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreBean> {
 	}
 
 	@Override
-	public StatsCalciatoreBean update(Long id) {
+	public StatsCalciatoreDto update(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		StatsCalciatoreBean statsCalciatore = new StatsCalciatoreBean();
+		StatsCalciatoreDto statsCalciatore = new StatsCalciatoreDto();
 		
 		String query = "UPDATE FROM stats_calciatore SET gol_calciatore = ?, assist_calciatore = ?, calciatore = ?, data_modifica = ? WHERE id_stats = ?";
 		PreparedStatement ps = null;
@@ -101,10 +101,10 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreBean> {
 	}
 
 	@Override
-	public StatsCalciatoreBean insert() {
+	public StatsCalciatoreDto insert() {
 		
 		Connection conn = dbConn.getConnection();
-		StatsCalciatoreBean statsCalciatore = new StatsCalciatoreBean();
+		StatsCalciatoreDto statsCalciatore = new StatsCalciatoreDto();
 		
 		String query = "INSERT INTO stats_calciatore (gol_calciatore, assist_calciatore, calciatore, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;
@@ -128,10 +128,10 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreBean> {
 	}
 
 	@Override
-	public StatsCalciatoreBean findById(Long id) {
+	public StatsCalciatoreDto findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		StatsCalciatoreBean statsCalciatore = new StatsCalciatoreBean();
+		StatsCalciatoreDto statsCalciatore = new StatsCalciatoreDto();
 		
 		String query = "SELECT * FROM stats_calciatore WHERE id_stats = ?";
 		PreparedStatement ps = null;

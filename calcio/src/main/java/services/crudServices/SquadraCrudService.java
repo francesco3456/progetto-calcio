@@ -2,37 +2,37 @@ package services.crudServices;
 
 import java.util.List;
 
-import model.bean.SquadraBean;
 import model.dao.crudDao.SquadraCrudDao;
+import model.dto.SquadraDto;
 
 public class SquadraCrudService {
 	
 	SquadraCrudDao squadraDao = new SquadraCrudDao();
 	
-	public List<SquadraBean> findAllSquadre() {
+	public List<SquadraDto> findAllSquadre() {
 		
-		List<SquadraBean> result = squadraDao.findAll();
-		
-		return result;
-	}
-	
-	public SquadraBean findById(Long id) {
-		
-		SquadraBean result = squadraDao.findById(id);
+		List<SquadraDto> result = squadraDao.findAll();
 		
 		return result;
 	}
 	
-	public SquadraBean insertSquadra() {
+	public SquadraDto findById(Long id) {
 		
-		SquadraBean result = squadraDao.insert();
+		SquadraDto result = squadraDao.findById(id);
 		
 		return result;
 	}
 	
-	public SquadraBean updateSquadra(Long id) {
+	public SquadraDto insertSquadra() {
 		
-		SquadraBean result = squadraDao.update(id);
+		SquadraDto result = squadraDao.insert();
+		
+		return result;
+	}
+	
+	public SquadraDto updateSquadra(Long id) {
+		
+		SquadraDto result = squadraDao.update(id);
 		
 		return result;
 	}

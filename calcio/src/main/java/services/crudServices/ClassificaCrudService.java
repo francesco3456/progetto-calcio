@@ -2,37 +2,37 @@ package services.crudServices;
 
 import java.util.List;
 
-import model.bean.ClassificaBean;
 import model.dao.crudDao.ClassificaCrudDao;
+import model.dto.ClassificaDto;
 
 public class ClassificaCrudService {
 	
 	ClassificaCrudDao classificaDao = new ClassificaCrudDao();
 	
-	public List<ClassificaBean> findAllPunteggi() {
+	public List<ClassificaDto> findAllPunteggi() {
 		
-		List<ClassificaBean> result = classificaDao.findAll();
-		
-		return result;
-	}
-	
-	public ClassificaBean findById(Long id) {
-		
-		ClassificaBean result = classificaDao.findById(id);
+		List<ClassificaDto> result = classificaDao.findAll();
 		
 		return result;
 	}
 	
-	public ClassificaBean insertPunteggio() {
+	public ClassificaDto findById(Long id) {
 		
-		ClassificaBean result = classificaDao.insert();
+		ClassificaDto result = classificaDao.findById(id);
 		
 		return result;
 	}
 	
-	public ClassificaBean updatePunteggio(Long id) {
+	public ClassificaDto insertPunteggio() {
 		
-		ClassificaBean result = classificaDao.update(id);
+		ClassificaDto result = classificaDao.insert();
+		
+		return result;
+	}
+	
+	public ClassificaDto updatePunteggio(Long id) {
+		
+		ClassificaDto result = classificaDao.update(id);
 		
 		return result;
 	}
