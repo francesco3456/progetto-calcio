@@ -1,4 +1,4 @@
-package model.repositories;
+package model.dao.crudDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.GiornataBean;
-import model.repositoryInterface.CrudRepository;
+import model.daoInterface.CrudDao;
 import utils.DbConnection;
 
-public class GiornataCrudRepository implements CrudRepository<GiornataBean> {
+public class GiornataCrudDao implements CrudDao<GiornataBean> {
 	
 	DbConnection dbConn = new DbConnection();
 

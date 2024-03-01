@@ -1,4 +1,4 @@
-package model.repositories;
+package model.dao.crudDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,10 +13,10 @@ import java.util.List;
 import com.mysql.cj.jdbc.Blob;
 
 import model.bean.SquadraBean;
-import model.repositoryInterface.CrudRepository;
+import model.daoInterface.CrudDao;
 import utils.DbConnection;
 
-public class SquadraCrudRepository implements CrudRepository<SquadraBean> {
+public class SquadraCrudDao implements CrudDao<SquadraBean> {
 	
 	DbConnection dbConn = new DbConnection();
 

@@ -1,4 +1,4 @@
-package model.repositories;
+package model.dao.crudDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.StatsCalciatoreBean;
-import model.repositoryInterface.CrudRepository;
+import model.daoInterface.CrudDao;
 import utils.DbConnection;
 
-public class StatsCrudRepository implements CrudRepository<StatsCalciatoreBean> {
+public class StatsCrudDao implements CrudDao<StatsCalciatoreBean> {
 	
 	DbConnection dbConn = new DbConnection();
 

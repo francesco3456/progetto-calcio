@@ -1,8 +1,8 @@
-package model.repositoryInterface;
+package model.daoInterface;
 
 import java.util.List;
 
-public interface CrudRepository<T> {
+public interface CrudDao<T> {
 	
 	public List<T> findAll();
 	
