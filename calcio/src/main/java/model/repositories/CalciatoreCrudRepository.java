@@ -80,7 +80,7 @@ public class CalciatoreCrudRepository implements CrudRepository<CalciatoreBean> 
 			
 			while(rs.next()) {
 				
-				calciatore.setIdCalciatore(rs.getLong("id_calciatore"));
+				calciatore.setIdCalciatore(id);
 				calciatore.setNome(rs.getString("nome"));
 				calciatore.setCognome(rs.getString("cognome"));
 				calciatore.setEta(rs.getInt("età"));
