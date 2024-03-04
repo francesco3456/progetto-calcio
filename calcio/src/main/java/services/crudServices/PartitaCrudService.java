@@ -4,14 +4,18 @@ import java.util.List;
 
 import model.bean.PartitaBean;
 import model.dao.crudDao.PartitaCrudDao;
+import utils.logger.InformazioniLogger;
 
 public class PartitaCrudService {
 	
 	PartitaCrudDao partitaDao = new PartitaCrudDao();
+	InformazioniLogger logger = new InformazioniLogger();
 	
 	public List<PartitaBean> findAllPartite() {
 		
 		List<PartitaBean> result = partitaDao.findAll();
+		
+		logger.getLogDebug("Sto selezionando tutti le partite: ", result);
 		
 		return result;
 	}
@@ -20,12 +24,16 @@ public class PartitaCrudService {
 		
 		PartitaBean result = partitaDao.findById(id);
 		
+		logger.getLogDebug("Sto selezionando la seguente partita: ", result);
+		
 		return result;
 	}
 	
 	public PartitaBean insertPartita() {
 		
 		PartitaBean result = partitaDao.insert();
+		
+		logger.getLogDebug("Sto inserendo la seguente partita: ", result);
 		
 		return result;
 	}
@@ -34,12 +42,16 @@ public class PartitaCrudService {
 		
 		PartitaBean result = partitaDao.update(id);
 		
+		logger.getLogDebug("Sto aggiornando la partita con le seguenti informazioni: ", result);
+		
 		return result;
 	}
 	
 	public void deletePartita(Long id) {
 		
 		partitaDao.delete(id);
+		
+		logger.getLogDebug("Sto eliminando la partita con il seguente ID: ", id);
 	}
 
 }
