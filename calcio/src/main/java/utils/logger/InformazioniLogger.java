@@ -4,28 +4,35 @@ package utils.logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import utils.ClassSingleton;
+
 public class InformazioniLogger {
 	
 	private static final Logger logger = LogManager.getLogger(InformazioniLogger.class);
+	private ClassSingleton singletonInstance;
 	
-	public void getLogInfo() {
-		logger.info("log di info");
+	public InformazioniLogger() {
+		this.singletonInstance = ClassSingleton.getInstance();
 	}
 	
-	public void getLogDebug() {
-		logger.debug("log di debug");
+	public void getLogInfo(String message, Object... info) {
+		logger.info(message, info);
 	}
 	
-	public void getLogWarn() {
-		logger.warn("log di warn");
+	public void getLogDebug(String message, Object... debug) {
+		logger.debug(message, debug);
 	}
 	
-	public void getLogError() {
-		logger.error("log di error");
+	public void getLogWarn(String message, Object... warn) {
+		logger.warn(message, warn);
 	}
 	
-	public void getLogFatal() {
-		logger.fatal("log di fatal");
+	public void getLogError(String message, Object... error) {
+		logger.error(message, error);
+	}
+	
+	public void getLogFatal(String message, Object... fatal) {
+		logger.fatal(message, fatal);
 	}
 	
 }

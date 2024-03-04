@@ -15,15 +15,19 @@ import com.mysql.cj.jdbc.Blob;
 import model.bean.CampionatoBean;
 import model.daoInterface.CrudDao;
 import utils.DbConnection;
+import utils.logger.InformazioniLogger;
 
 public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 	
 	DbConnection dbConn = new DbConnection();
+	InformazioniLogger logger = new InformazioniLogger();
 	
 	@Override
 	public List<CampionatoBean> findAll() {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		List<CampionatoBean> campionati = new ArrayList<>();
 		
 		String query = "SELECT * FROM campionato";
@@ -47,13 +51,16 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 				campionato.setBandieraCampionato((Blob) rs.getBlob("bandiera"));
 				
 				campionati.add(campionato);
+				
+				logger.getLogInfo("Query eseguita con successo.");
 			}
 			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return campionati;
 	}
@@ -61,6 +68,8 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 	public CampionatoBean findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		CampionatoBean campionato = new CampionatoBean();
 		
 		String query = "SELECT * FROM campionato WHERE id_campionato = ?";
@@ -71,8 +80,10 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 			ps = conn.prepareStatement(query);
 			ps.setLong(1, id);
 			
+			logger.getLogDebug("Id del campionato recuperato con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nel recupero dell'Id del campionato", e);
 		}
 		
 		try {
@@ -90,11 +101,14 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 				campionato.setBandieraCampionato((Blob) rs.getBlob("bandiera"));
 			}
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return campionato;
 	}
@@ -102,6 +116,8 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 	public CampionatoBean update(Long id) {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		CampionatoBean campionato = new CampionatoBean();
 		
 		String query = "UPDATE FROM campionato SET nome = ?, nazione = ?, inizio = ?, fine = ?, stagione = ?, tot_giornate = ?, bandiera = ?, data_modifica = ? WHERE id_campionato = ?";
@@ -118,13 +134,16 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 			ps.setInt(6, campionato.getNumeroGiornateCampionato());
 			ps.setBlob(7, campionato.getBandieraCampionato());
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setLong(9, id);			
+			ps.setLong(9, id);
+			
+			logger.getLogInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return campionato;
 	}
@@ -132,6 +151,8 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 	public CampionatoBean insert() {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		CampionatoBean campionato = new CampionatoBean();
 		
 		String query = "INSERT INTO campionato (nome, nazione, inizio, fine, stagione, tot_giornate, bandiera, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -150,11 +171,14 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));	
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));	
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return campionato;
 	}
@@ -162,6 +186,7 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 	public void delete(Long id) {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
 		
 		String query = "DELETE FROM campionato WHERE id_campionato = ?";
 		PreparedStatement ps = null;
@@ -171,10 +196,13 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 			
 			ps.setLong(1, id);
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 	}
 }

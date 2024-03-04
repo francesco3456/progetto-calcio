@@ -13,15 +13,19 @@ import java.util.List;
 import model.daoInterface.CrudDao;
 import model.dto.AllenatoreDto;
 import utils.DbConnection;
+import utils.logger.InformazioniLogger;
 
 public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 	
 	DbConnection dbConn = new DbConnection();
+	InformazioniLogger logger = new InformazioniLogger();
 	
 	@Override
 	public List<AllenatoreDto> findAll() {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		List<AllenatoreDto> allenatori = new ArrayList<>();
 		
 		String query = "SELECT * FROM allenatore";
@@ -48,11 +52,14 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 				
 			}
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return allenatori;
 
@@ -62,6 +69,8 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 	public AllenatoreDto findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		AllenatoreDto allenatore = new AllenatoreDto();
 		
 		String query = "SELECT * FROM allenatore WHERE id_allenatore = ?";
@@ -72,8 +81,10 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 			ps = conn.prepareStatement(query);
 			ps.setLong(1, id);
 			
-		} catch(SQLException e) {
+			logger.getLogDebug("Id dell'allenatore recuperato con successo");
 			
+		} catch(SQLException e) {
+			logger.getLogError("Errore nel recupero dell'Id dell'allenatore", e);
 		}
 		
 		try {
@@ -91,11 +102,14 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 				allenatore.setIdSquadra(rs.getLong("squadra_fk"));
 			}
 			
-		} catch(SQLException e) {
+			logger.getLogInfo("Query eseguita con successo.");
 			
+		} catch(SQLException e) {
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return allenatore;
 	}
@@ -104,6 +118,8 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 	public AllenatoreDto update(Long id) {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		AllenatoreDto allenatore = new AllenatoreDto();
 		
 		String query = "UPDATE allenatore SET nome = ?, cognome = ?, età = ?, altezza = ?, nazionalità = ?, peso = ?, squadra = ?, data_modifica = ? WHERE id_allenatore = ?";
@@ -122,11 +138,14 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setLong(9, id);
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return allenatore;
 	}
@@ -135,6 +154,8 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 	public AllenatoreDto insert() {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		AllenatoreDto allenatore = new AllenatoreDto();
 		
 		String query = "INSERT INTO allenatore (nome, cognome, nazionalità, età, altezza, peso, squadra_fk, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -153,11 +174,14 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return allenatore;
 	}
@@ -166,6 +190,7 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 	public void delete(Long id) {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
 		
 		String query = "DELETE FROM allenatore WHERE id_allenatore = ?";
 		PreparedStatement ps = null;
@@ -175,11 +200,14 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 			
 			ps.setLong(1, id);
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 	}
 
 }

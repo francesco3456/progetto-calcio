@@ -15,15 +15,19 @@ import com.mysql.cj.jdbc.Blob;
 import model.daoInterface.CrudDao;
 import model.dto.SquadraDto;
 import utils.DbConnection;
+import utils.logger.InformazioniLogger;
 
 public class SquadraCrudDao implements CrudDao<SquadraDto> {
 	
 	DbConnection dbConn = new DbConnection();
+	InformazioniLogger logger = new InformazioniLogger();
 
 	@Override
 	public List<SquadraDto> findAll() {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		List<SquadraDto> squadre = new ArrayList<>();
 		
 		String query = "SELECT * FROM squadra WHERE id_squadra = ?";
@@ -48,11 +52,14 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 				squadre.add(squadra);
 			}
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return squadre;
 	}
@@ -61,6 +68,8 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 	public SquadraDto update(Long id) {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		SquadraDto squadra = new SquadraDto();
 		
 		String query = "UPDATE FROM squadra SET nome = ?, nazionalità = ?, nascita = ?, stadio = ?, città = ?, stemma = ?, data_modifica = ? WHERE id_squadra = ?";
@@ -78,12 +87,15 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setLong(8, id);
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return squadra;
 	}
@@ -92,6 +104,7 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 	public void delete(Long id) {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
 		
 		String query = "DELETE FROM squadra WHERE id_squadra = ?";
 		PreparedStatement ps = null;
@@ -101,11 +114,14 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 			
 			ps.setLong(1, id);
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 	}
 
@@ -113,6 +129,8 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 	public SquadraDto insert() {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		SquadraDto squadra = new SquadraDto();
 		
 		String query = "INSERT INTO squadra (nome, nazionalità, nascita, stadio, città, stemma, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -130,11 +148,14 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return squadra;
 	}
@@ -143,6 +164,8 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 	public SquadraDto findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
+		logger.getLogInfo("Connesso al database");
+		
 		SquadraDto squadra = new SquadraDto();
 		
 		String query = "SELECT * FROM squadra WHERE id_squadra = ?";
@@ -154,8 +177,10 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 			
 			ps.setLong(1, id);
 			
+			logger.getLogDebug("Id della squadra recuperato con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nel recupero dell'Id della squadra", e);
 		}
 		
 		try {
@@ -169,11 +194,14 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 			squadra.setCittaSquadra(rs.getString("città"));
 			squadra.setStemmaSquadra((Blob) rs.getBlob("stemma"));
 			
+			logger.getLogInfo("Query eseguita con successo.");
+			
 		} catch(SQLException e) {
-			e.printStackTrace();
+			logger.getLogError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
+		logger.getLogInfo("Connessione al database terminata");
 		
 		return squadra;
 	}
