@@ -1,9 +1,9 @@
 package model.bean;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
-import com.mysql.cj.jdbc.Blob;
+import java.sql.Blob;
 
 import model.beanInterface.InformazioniTabelle;
 
@@ -12,7 +12,7 @@ public class SquadraBean implements InformazioniTabelle {
 	private Long idSquadra;
 	private String nomeSquadra;
 	private String nazionalitaSquadra;
-	private Date nascitaSquadra;
+	private LocalDate nascitaSquadra;
 	private String stadioSquadra;
 	private String cittaSquadra;
 	private Blob stemmaSquadra;
@@ -22,7 +22,7 @@ public class SquadraBean implements InformazioniTabelle {
 	
 	public SquadraBean() {}
 
-	public SquadraBean(Long idSquadra, String nomeSquadra, String nazionalitaSquadra, Date nascitaSquadra,
+	public SquadraBean(Long idSquadra, String nomeSquadra, String nazionalitaSquadra, LocalDate nascitaSquadra,
 			String stadioSquadra, String cittaSquadra, Blob stemmaSquadra) {
 		this.idSquadra = idSquadra;
 		this.nomeSquadra = nomeSquadra;
@@ -57,11 +57,11 @@ public class SquadraBean implements InformazioniTabelle {
 		this.nazionalitaSquadra = nazionalitaSquadra;
 	}
 
-	public Date getNascitaSquadra() {
+	public LocalDate getNascitaSquadra() {
 		return nascitaSquadra;
 	}
 
-	public void setNascitaSquadra(Date nascitaSquadra) {
+	public void setNascitaSquadra(LocalDate nascitaSquadra) {
 		this.nascitaSquadra = nascitaSquadra;
 	}
 

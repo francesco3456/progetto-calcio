@@ -59,14 +59,13 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 	}
 
 	@Override
-	public GiornataDto update(Long id) {
+	public GiornataDto update(GiornataDto giornata) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		GiornataDto giornata = new GiornataDto();
 		
-		String query = "UPDATE FROM giornata SET inizio = ?, fine = ?, data_modifica = ? WHERE id_giornata = ?";
+		String query = "UPDATE giornata SET inizio = ?, fine = ?, data_modifica = ? WHERE id_giornata = ?";
 		PreparedStatement ps = null;
 		
 		try {
@@ -75,7 +74,9 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 			ps.setTimestamp(1, Timestamp.valueOf(giornata.getInizioGiornata()));
 			ps.setTimestamp(2, Timestamp.valueOf(giornata.getFineGiornata()));
 			ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setLong(4, id);
+			ps.setLong(4, giornata.getIdGiornata());
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -103,6 +104,8 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 			
 			ps.setLong(1, id);
 			
+			ps.executeUpdate();
+			
 			logger.getLogInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
@@ -115,12 +118,11 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 	}
 
 	@Override
-	public GiornataDto insert() {
+	public GiornataDto insert(GiornataDto giornata) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		GiornataDto giornata = new GiornataDto();
 		
 		String query = "INSERT INTO giornata (inizio, fine, data_creazione, data_modifica) VALUES (?, ?, ?, ?)";
 		PreparedStatement ps = null;
@@ -132,6 +134,8 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 			ps.setTimestamp(2, Timestamp.valueOf(giornata.getFineGiornata()));
 			ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			

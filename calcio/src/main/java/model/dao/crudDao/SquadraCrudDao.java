@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.jdbc.Blob;
+import java.sql.Blob;
 
 import model.daoInterface.CrudDao;
 import model.dto.SquadraDto;
@@ -30,7 +30,7 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 		
 		List<SquadraDto> squadre = new ArrayList<>();
 		
-		String query = "SELECT * FROM squadra WHERE id_squadra = ?";
+		String query = "SELECT * FROM squadra";
 		Statement st = null;
 		ResultSet rs;
 		
@@ -44,7 +44,7 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 				squadra.setIdSquadra(rs.getLong("id_squadra"));
 				squadra.setNomeSquadra(rs.getString("nome"));
 				squadra.setNazionalitaSquadra(rs.getString("nazionalità"));
-				squadra.setNascitaSquadra(rs.getDate("nascita"));
+				squadra.setNascitaSquadra(rs.getDate("nascita").toLocalDate());
 				squadra.setStadioSquadra(rs.getString("stadio"));
 				squadra.setCittaSquadra(rs.getString("città"));
 				squadra.setStemmaSquadra((Blob) rs.getBlob("stemma"));
@@ -65,14 +65,13 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 	}
 
 	@Override
-	public SquadraDto update(Long id) {
+	public SquadraDto update(SquadraDto squadra) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		SquadraDto squadra = new SquadraDto();
 		
-		String query = "UPDATE FROM squadra SET nome = ?, nazionalità = ?, nascita = ?, stadio = ?, città = ?, stemma = ?, data_modifica = ? WHERE id_squadra = ?";
+		String query = "UPDATE squadra SET nome = ?, nazionalità = ?, nascita = ?, stadio = ?, città = ?, stemma = ?, data_modifica = ? WHERE id_squadra = ?";
 		PreparedStatement ps = null;
 		
 		try {
@@ -80,12 +79,14 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 			
 			ps.setString(1, squadra.getNomeSquadra());
 			ps.setString(2, squadra.getNazionalitaSquadra());
-			ps.setDate(3, new java.sql.Date(squadra.getNascitaSquadra().getTime()));
+			ps.setDate(3, java.sql.Date.valueOf(squadra.getNascitaSquadra()));
 			ps.setString(4, squadra.getStadioSquadra());
 			ps.setString(5, squadra.getCittaSquadra());
 			ps.setBlob(6, squadra.getStemmaSquadra());
 			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setLong(8, id);
+			ps.setLong(8, squadra.getIdSquadra());
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -114,6 +115,8 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 			
 			ps.setLong(1, id);
 			
+			ps.executeUpdate();
+			
 			logger.getLogInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
@@ -126,12 +129,11 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 	}
 
 	@Override
-	public SquadraDto insert() {
+	public SquadraDto insert( SquadraDto squadra) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		SquadraDto squadra = new SquadraDto();
 		
 		String query = "INSERT INTO squadra (nome, nazionalità, nascita, stadio, città, stemma, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;
@@ -141,14 +143,16 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 			
 			ps.setString(1, squadra.getNomeSquadra());
 			ps.setString(2, squadra.getNazionalitaSquadra());
-			ps.setDate(3, new java.sql.Date(squadra.getNascitaSquadra().getTime()));
+			ps.setDate(3, java.sql.Date.valueOf(squadra.getNascitaSquadra()));
 			ps.setString(4, squadra.getStadioSquadra());
 			ps.setString(5, squadra.getCittaSquadra());
 			ps.setBlob(6, squadra.getStemmaSquadra());
 			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			ps.executeUpdate();
+			
+			logger.getLogInfo("Query eseguita con successo.", squadra);
 			
 		} catch(SQLException e) {
 			logger.getLogError("Errore nella esecuzione della query", e);
@@ -186,15 +190,19 @@ public class SquadraCrudDao implements CrudDao<SquadraDto> {
 		try {
 			rs = ps.executeQuery();
 			
-			squadra.setIdSquadra(rs.getLong("id_squadra"));
+			while(rs.next()) {
+			
+			squadra.setIdSquadra(id);
 			squadra.setNomeSquadra(rs.getString("nome"));
 			squadra.setNazionalitaSquadra(rs.getString("nazionalità"));
-			squadra.setNascitaSquadra(rs.getDate("nascita"));
+			squadra.setNascitaSquadra(rs.getDate("nascita").toLocalDate());
 			squadra.setStadioSquadra(rs.getString("stadio"));
 			squadra.setCittaSquadra(rs.getString("città"));
 			squadra.setStemmaSquadra((Blob) rs.getBlob("stemma"));
 			
 			logger.getLogInfo("Query eseguita con successo.");
+			
+			}
 			
 		} catch(SQLException e) {
 			logger.getLogError("Errore nella esecuzione della query", e);

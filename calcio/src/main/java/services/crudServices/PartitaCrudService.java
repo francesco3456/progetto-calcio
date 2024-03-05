@@ -29,18 +29,18 @@ public class PartitaCrudService {
 		return result;
 	}
 	
-	public PartitaBean insertPartita() {
+	public PartitaBean insertPartita(PartitaBean partita) {
 		
-		PartitaBean result = partitaDao.insert();
+		PartitaBean result = partitaDao.insert(partita);
 		
 		logger.getLogDebug("Sto inserendo la seguente partita: ", result);
 		
 		return result;
 	}
 	
-	public PartitaBean updatePartita(Long id) {
+	public PartitaBean updatePartita(PartitaBean partita) {
 		
-		PartitaBean result = partitaDao.update(id);
+		PartitaBean result = partitaDao.update(partita);
 		
 		logger.getLogDebug("Sto aggiornando la partita con le seguenti informazioni: ", result);
 		

@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.daoInterface.CrudDao;
 import model.dto.CalciatoreDto;
+import model.daoInterface.CrudDao;
 import utils.DbConnection;
 import utils.logger.InformazioniLogger;
 
@@ -116,12 +116,11 @@ public class CalciatoreCrudDao implements CrudDao<CalciatoreDto> {
 	}
 	
 	@Override
-	public CalciatoreDto update(Long id) {
+	public CalciatoreDto update(CalciatoreDto calciatore) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		CalciatoreDto calciatore = new CalciatoreDto();
 		
 		String query = "UPDATE calciatore SET nome = ?, cognome = ?, età = ?, altezza = ?, nazionalità = ?, peso = ?, ruolo = ?, squadra = ?, data_modifica = ? WHERE id_calciatore = ?";
 		PreparedStatement ps = null;
@@ -138,7 +137,9 @@ public class CalciatoreCrudDao implements CrudDao<CalciatoreDto> {
 			ps.setString(7, calciatore.getRuoloCalciatore());
 			ps.setLong(8, calciatore.getIdSquadra());
 			ps.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setLong(10, id);
+			ps.setLong(10, calciatore.getIdCalciatore());
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -153,14 +154,13 @@ public class CalciatoreCrudDao implements CrudDao<CalciatoreDto> {
 	}
 	
 	@Override
-	public CalciatoreDto insert() {
+	public CalciatoreDto insert(CalciatoreDto calciatore) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		CalciatoreDto calciatore = new CalciatoreDto();
 		
-		String query = "INSERT INTO calciatore (nome, cognome, età, altezza, nazionalità, peso, ruolo, squadra, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?))";
+		String query = "INSERT INTO calciatore (nome, cognome, età, altezza, nazionalità, peso, ruolo, squadra, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;
 		
 		try {
@@ -176,6 +176,8 @@ public class CalciatoreCrudDao implements CrudDao<CalciatoreDto> {
 			ps.setLong(8, calciatore.getIdSquadra());
 			ps.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setTimestamp(10, Timestamp.valueOf(LocalDateTime.now()));
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -202,6 +204,8 @@ public class CalciatoreCrudDao implements CrudDao<CalciatoreDto> {
 			ps = conn.prepareStatement(query);
 			
 			ps.setLong(1, id);
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			

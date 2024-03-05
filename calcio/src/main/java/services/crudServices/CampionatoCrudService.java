@@ -29,18 +29,18 @@ public class CampionatoCrudService {
 		return result;
 	}
 	
-	public CampionatoBean insertCampionato() {
+	public CampionatoBean insertCampionato(CampionatoBean campionato) {
 		
-		CampionatoBean result = campionatoDao.insert();
+		CampionatoBean result = campionatoDao.insert(campionato);
 		
 		logger.getLogDebug("Sto inserendo il seguente campionato: ", result);
 		
 		return result;
 	}
 	
-	public CampionatoBean updateCampionato(Long id) {
+	public CampionatoBean updateCampionato(CampionatoBean campionato) {
 		
-		CampionatoBean result = campionatoDao.update(id);
+		CampionatoBean result = campionatoDao.update(campionato);
 		
 		logger.getLogDebug("Sto aggiornando il campionato con le seguenti informazioni: ", result);
 		

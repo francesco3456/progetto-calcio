@@ -29,18 +29,18 @@ public class ClassificaCrudService {
 		return result;
 	}
 	
-	public ClassificaDto insertPunteggio() {
+	public ClassificaDto insertPunteggio(ClassificaDto punteggio) {
 		
-		ClassificaDto result = classificaDao.insert();
+		ClassificaDto result = classificaDao.insert(punteggio);
 		
 		logger.getLogDebug("Sto inserendo il seguente punteggio: ", result);
 		
 		return result;
 	}
 	
-	public ClassificaDto updatePunteggio(Long id) {
+	public ClassificaDto updatePunteggio(ClassificaDto classifica) {
 		
-		ClassificaDto result = classificaDao.update(id);
+		ClassificaDto result = classificaDao.update(classifica);
 		
 		logger.getLogDebug("Sto aggiornando il punteggio con le seguenti informazioni: ", result);
 		

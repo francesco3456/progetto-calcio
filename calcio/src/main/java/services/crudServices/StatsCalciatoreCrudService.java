@@ -29,18 +29,18 @@ public class StatsCalciatoreCrudService {
 		return result;
 	}
 	
-	public StatsCalciatoreDto insertStats() {
+	public StatsCalciatoreDto insertStats(StatsCalciatoreDto statsCalciatore) {
 		
-		StatsCalciatoreDto result = statsDao.insert();
+		StatsCalciatoreDto result = statsDao.insert(statsCalciatore);
 		
 		logger.getLogDebug("Sto inserendo le stats del seguente calciatore: ", result);
 		
 		return result;
 	}
 	
-	public StatsCalciatoreDto updateStats(Long id) {
+	public StatsCalciatoreDto updateStats(StatsCalciatoreDto statsCalciatore) {
 		
-		StatsCalciatoreDto result = statsDao.update(id);
+		StatsCalciatoreDto result = statsDao.update(statsCalciatore);
 		
 		logger.getLogDebug("Sto aggiornando le stats del calciatore con le seguenti informazioni: ", result);
 		

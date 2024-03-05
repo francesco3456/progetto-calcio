@@ -63,14 +63,13 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 	}
 
 	@Override
-	public PartitaBean update(Long id) {
+	public PartitaBean update(PartitaBean partita) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		PartitaBean partita = new PartitaBean();
 		
-		String query = "UPDATE FROM partita SET risultato = ?, data_partita = ?, squadra_casa = ?, squadra_ospite = ?, giornata = ?, data_modifica = ? WHERE id_partita = ?";
+		String query = "UPDATE partita SET risultato = ?, data_partita = ?, squadra_casa = ?, squadra_ospite = ?, giornata = ?, data_modifica = ? WHERE id_partita = ?";
 		PreparedStatement ps = null;
 		
 		try {
@@ -82,7 +81,9 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 			ps.setLong(4, partita.getIdSquadraOspite());
 			ps.setLong(5, partita.getIdGiornata());
 			ps.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setLong(7, id);
+			ps.setLong(7, partita.getIdPartita());
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -110,6 +111,8 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 			
 			ps.setLong(1, id);
 			
+			ps.executeUpdate();
+			
 			logger.getLogInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
@@ -122,12 +125,11 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 	}
 
 	@Override
-	public PartitaBean insert() {
+	public PartitaBean insert(PartitaBean partita) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		PartitaBean partita = new PartitaBean();
 		
 		String query = "INSERT INTO partita (risultato, data_partita, squadra_casa, squadra_ospite, giornata, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;
@@ -142,6 +144,8 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 			ps.setLong(5, partita.getIdGiornata());
 			ps.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			

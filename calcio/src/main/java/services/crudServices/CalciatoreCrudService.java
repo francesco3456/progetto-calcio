@@ -29,18 +29,18 @@ public class CalciatoreCrudService {
 		return result;
 	}
 	
-	public CalciatoreDto insertCalciatore() {
+	public CalciatoreDto insertCalciatore(CalciatoreDto calciatore) {
 		
-		CalciatoreDto result = calciatoreDao.insert();
+		CalciatoreDto result = calciatoreDao.insert(calciatore);
 		
 		logger.getLogDebug("Sto inserendo il seguente calciatore: ", result);
 		
 		return result;
 	}
 	
-	public CalciatoreDto updateCalciatore(Long id) {
+	public CalciatoreDto updateCalciatore(CalciatoreDto calciatore) {
 		
-		CalciatoreDto result = calciatoreDao.update(id);
+		CalciatoreDto result = calciatoreDao.update(calciatore);
 		
 		logger.getLogDebug("Sto aggiornando il calciatore con le seguenti informazioni: ", result);
 		

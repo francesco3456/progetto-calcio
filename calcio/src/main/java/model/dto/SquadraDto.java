@@ -1,16 +1,17 @@
 package model.dto;
 
 
-import java.util.Date;
 
-import com.mysql.cj.jdbc.Blob;
+import java.time.LocalDate;
+
+import java.sql.Blob;
 
 public class SquadraDto {
 	
 	private Long idSquadra;
 	private String nomeSquadra;
 	private String nazionalitaSquadra;
-	private Date nascitaSquadra;
+	private LocalDate nascitaSquadra;
 	private String stadioSquadra;
 	private String cittaSquadra;
 	private Blob stemmaSquadra;
@@ -41,11 +42,11 @@ public class SquadraDto {
 		this.nazionalitaSquadra = nazionalitaSquadra;
 	}
 
-	public Date getNascitaSquadra() {
+	public LocalDate getNascitaSquadra() {
 		return nascitaSquadra;
 	}
 
-	public void setNascitaSquadra(Date nascitaSquadra) {
+	public void setNascitaSquadra(LocalDate nascitaSquadra) {
 		this.nascitaSquadra = nascitaSquadra;
 	}
 

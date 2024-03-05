@@ -60,14 +60,13 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 	}
 
 	@Override
-	public StatsCalciatoreDto update(Long id) {
+	public StatsCalciatoreDto update(StatsCalciatoreDto statsCalciatore) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		StatsCalciatoreDto statsCalciatore = new StatsCalciatoreDto();
 		
-		String query = "UPDATE FROM stats_calciatore SET gol_calciatore = ?, assist_calciatore = ?, calciatore = ?, data_modifica = ? WHERE id_stats = ?";
+		String query = "UPDATE stats_calciatore SET gol_calciatore = ?, assist_calciatore = ?, calciatore = ?, data_modifica = ? WHERE id_stats = ?";
 		PreparedStatement ps = null;
 		
 		try {
@@ -77,7 +76,9 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 			ps.setInt(2, statsCalciatore.getAssistCalciatore());
 			ps.setLong(3, statsCalciatore.getIdCalciatore());
 			ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setLong(5, id);
+			ps.setLong(5, statsCalciatore.getIdStatsCalciatore());
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -105,6 +106,8 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 			
 			ps.setLong(1, id);
 			
+			ps.executeUpdate();
+			
 			logger.getLogInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
@@ -117,12 +120,11 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 	}
 
 	@Override
-	public StatsCalciatoreDto insert() {
+	public StatsCalciatoreDto insert(StatsCalciatoreDto statsCalciatore) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		StatsCalciatoreDto statsCalciatore = new StatsCalciatoreDto();
 		
 		String query = "INSERT INTO stats_calciatore (gol_calciatore, assist_calciatore, calciatore, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;
@@ -135,6 +137,8 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 			ps.setLong(3, statsCalciatore.getIdCalciatore());
 			ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			

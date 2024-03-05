@@ -29,18 +29,18 @@ public class SquadraCrudService {
 		return result;
 	}
 	
-	public SquadraDto insertSquadra() {
+	public SquadraDto insertSquadra(SquadraDto squadra) {
 		
-		SquadraDto result = squadraDao.insert();
+		SquadraDto result = squadraDao.insert(squadra);
 		
 		logger.getLogDebug("Sto inserendo la seguente squadra: ", result);
 		
 		return result;
 	}
 	
-	public SquadraDto updateSquadra(Long id) {
+	public SquadraDto updateSquadra(SquadraDto squadra) {
 		
-		SquadraDto result = squadraDao.update(id);
+		SquadraDto result = squadraDao.update(squadra);
 		
 		logger.getLogDebug("Sto aggiornando la squadra con le seguenti informazioni ", result);
 		

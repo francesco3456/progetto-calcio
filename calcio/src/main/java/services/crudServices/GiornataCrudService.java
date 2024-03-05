@@ -29,18 +29,18 @@ public class GiornataCrudService {
 		return result;
 	}
 	
-	public GiornataDto insertGiornata() {
+	public GiornataDto insertGiornata(GiornataDto giornata) {
 		
-		GiornataDto result = giornataDao.insert();
+		GiornataDto result = giornataDao.insert(giornata);
 		
 		logger.getLogDebug("Sto inserendo la seguente giornata: ", result);
 		
 		return result;
 	}
 	
-	public GiornataDto updateGiornata(Long id) {
+	public GiornataDto updateGiornata(GiornataDto giornata) {
 		
-		GiornataDto result = giornataDao.update(id);
+		GiornataDto result = giornataDao.update(giornata);
 		
 		logger.getLogDebug("Sto aggiornando la giornata con le seguenti informazioni: ", result);
 		

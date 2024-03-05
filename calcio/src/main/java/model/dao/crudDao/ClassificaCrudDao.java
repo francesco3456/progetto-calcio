@@ -112,14 +112,13 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 	}
 	
 	@Override
-	public ClassificaDto update(Long id) {
+	public ClassificaDto update(ClassificaDto punteggio) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		ClassificaDto punteggio = new ClassificaDto();
 		
-		String query = "UPDATE FROM classifica SET punti = ?, gol_fatti = ?, gol_subiti = ?, differenza_reti = ?, win = ?, pari = ?, lose = ?, squadra_fk = ?, data_modifica = ? WHERE id_classifica = ?";
+		String query = "UPDATE classifica SET punti = ?, gol_fatti = ?, gol_subiti = ?, differenza_reti = ?, win = ?, pari = ?, lose = ?, squadra_fk = ?, data_modifica = ? WHERE id_classifica = ?";
 		PreparedStatement ps = null;
 		
 		try {
@@ -134,7 +133,9 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 			ps.setInt(7, punteggio.getSconfitteSquadra());
 			ps.setLong(8, punteggio.getIdSquadra());
 			ps.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setLong(10, id);
+			ps.setLong(10, punteggio.getIdClassifica());
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -149,12 +150,11 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 	}
 	
 	@Override
-	public ClassificaDto insert() {
+	public ClassificaDto insert(ClassificaDto punteggio) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		ClassificaDto punteggio = new ClassificaDto();
 		
 		String query = "INSERT INTO classifica (punti, gol_fatti, gol_subiti, differenza_reti, win, pari, lose, squadra_fk, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;
@@ -172,6 +172,8 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 			ps.setLong(8, punteggio.getIdSquadra());
 			ps.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setTimestamp(10, Timestamp.valueOf(LocalDateTime.now()));
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -198,6 +200,8 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 			ps = conn.prepareStatement(query);
 			
 			ps.setLong(1, id);
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			

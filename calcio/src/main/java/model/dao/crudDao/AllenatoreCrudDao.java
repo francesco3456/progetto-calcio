@@ -115,12 +115,11 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 	}
 	
 	@Override
-	public AllenatoreDto update(Long id) {
+	public AllenatoreDto update(AllenatoreDto allenatore) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		AllenatoreDto allenatore = new AllenatoreDto();
 		
 		String query = "UPDATE allenatore SET nome = ?, cognome = ?, età = ?, altezza = ?, nazionalità = ?, peso = ?, squadra = ?, data_modifica = ? WHERE id_allenatore = ?";
 		PreparedStatement ps = null;
@@ -136,7 +135,9 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 			ps.setInt(6, allenatore.getPeso());
 			ps.setLong(7, allenatore.getIdSquadra());
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setLong(9, id);
+			ps.setLong(9, allenatore.getIdAllenatore());
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -151,12 +152,11 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 	}
 	
 	@Override
-	public AllenatoreDto insert() {
+	public AllenatoreDto insert(AllenatoreDto allenatore) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		AllenatoreDto allenatore = new AllenatoreDto();
 		
 		String query = "INSERT INTO allenatore (nome, cognome, nazionalità, età, altezza, peso, squadra_fk, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;
@@ -173,6 +173,8 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 			ps.setLong(7, allenatore.getIdSquadra());
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -199,6 +201,8 @@ public class AllenatoreCrudDao implements CrudDao<AllenatoreDto>{
 			ps = conn.prepareStatement(query);
 			
 			ps.setLong(1, id);
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			

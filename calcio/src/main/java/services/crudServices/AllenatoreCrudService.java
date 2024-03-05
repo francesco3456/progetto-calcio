@@ -32,18 +32,18 @@ public class AllenatoreCrudService {
 		return result;
 	}
 	
-	public AllenatoreDto updateAllenatore(Long id) {
+	public AllenatoreDto updateAllenatore(AllenatoreDto allenatore) {
 		
-		AllenatoreDto result = allenatoreDao.update(id);
+		AllenatoreDto result = allenatoreDao.update(allenatore);
 		
 		logger.getLogDebug("Sto aggiornando l'allenatore con le seguenti informazioni: ", result);
 		
 		return result;
 	}
 	
-	public AllenatoreDto insertAllenatore() {
+	public AllenatoreDto insertAllenatore(AllenatoreDto allenatore) {
 		
-		AllenatoreDto result = allenatoreDao.insert();
+		AllenatoreDto result = allenatoreDao.insert(allenatore);
 		
 		logger.getLogDebug("Sto inserendo il seguente allenatore ", result);
 		

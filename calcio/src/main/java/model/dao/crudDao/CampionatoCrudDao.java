@@ -113,12 +113,11 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 		return campionato;
 	}
 	
-	public CampionatoBean update(Long id) {
+	public CampionatoBean update(CampionatoBean campionato) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		CampionatoBean campionato = new CampionatoBean();
 		
 		String query = "UPDATE FROM campionato SET nome = ?, nazione = ?, inizio = ?, fine = ?, stagione = ?, tot_giornate = ?, bandiera = ?, data_modifica = ? WHERE id_campionato = ?";
 		PreparedStatement ps = null;
@@ -134,7 +133,9 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 			ps.setInt(6, campionato.getNumeroGiornateCampionato());
 			ps.setBlob(7, campionato.getBandieraCampionato());
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setLong(9, id);
+			ps.setLong(9, campionato.getIdCampionato());
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -148,12 +149,11 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 		return campionato;
 	}
 	
-	public CampionatoBean insert() {
+	public CampionatoBean insert(CampionatoBean campionato) {
 		
 		Connection conn = dbConn.getConnection();
 		logger.getLogInfo("Connesso al database");
 		
-		CampionatoBean campionato = new CampionatoBean();
 		
 		String query = "INSERT INTO campionato (nome, nazione, inizio, fine, stagione, tot_giornate, bandiera, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;
@@ -170,6 +170,8 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 			ps.setBlob(7, campionato.getBandieraCampionato());
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));	
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));	
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
@@ -195,6 +197,8 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 			ps = conn.prepareStatement(query);
 			
 			ps.setLong(1, id);
+			
+			ps.executeUpdate();
 			
 			logger.getLogInfo("Query eseguita con successo.");
 			
