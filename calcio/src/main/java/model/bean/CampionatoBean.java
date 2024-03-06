@@ -1,7 +1,7 @@
 package model.bean;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import com.mysql.cj.jdbc.Blob;
 
@@ -14,7 +14,7 @@ public class CampionatoBean implements InformazioniTabelle {
 	private String nazioneCampionato;
 	private LocalDateTime inizioCampionato;
 	private LocalDateTime fineCampionato;
-	private Date stagioneCampionato;
+	private LocalDate stagioneCampionato;
 	private int numeroGiornateCampionato;
 	private Blob bandieraCampionato;
 	private LocalDateTime dataCreazioneCampionato;
@@ -23,7 +23,7 @@ public class CampionatoBean implements InformazioniTabelle {
 	public CampionatoBean() {}
 
 	public CampionatoBean(Long idCampionato, String nomeCampionato, String nazioneCampionato,
-			LocalDateTime inizioCampionato, LocalDateTime fineCampionato, Date stagioneCampionato,
+			LocalDateTime inizioCampionato, LocalDateTime fineCampionato, LocalDate stagioneCampionato,
 			int numeroGiornateCampionato, Blob bandieraCampionato) {
 		this.idCampionato = idCampionato;
 		this.nomeCampionato = nomeCampionato;
@@ -75,11 +75,11 @@ public class CampionatoBean implements InformazioniTabelle {
 		this.fineCampionato = fineCampionato;
 	}
 
-	public Date getStagioneCampionato() {
+	public LocalDate getStagioneCampionato() {
 		return stagioneCampionato;
 	}
 
-	public void setStagioneCampionato(Date stagioneCampionato) {
+	public void setStagioneCampionato(LocalDate stagioneCampionato) {
 		this.stagioneCampionato = stagioneCampionato;
 	}
 

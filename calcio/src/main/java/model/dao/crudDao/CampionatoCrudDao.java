@@ -46,7 +46,7 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 				campionato.setNazioneCampionato(rs.getString("nazione"));
 				campionato.setInizioCampionato(rs.getTimestamp("inizio").toLocalDateTime());
 				campionato.setFineCampionato(rs.getTimestamp("fine").toLocalDateTime());
-				campionato.setStagioneCampionato(rs.getDate("stagione"));
+				campionato.setStagioneCampionato(rs.getDate("stagione").toLocalDate());
 				campionato.setNumeroGiornateCampionato(rs.getInt("tot_giornate"));
 				campionato.setBandieraCampionato((Blob) rs.getBlob("bandiera"));
 				
@@ -96,7 +96,7 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 				campionato.setNazioneCampionato(rs.getString("nazione"));
 				campionato.setInizioCampionato(rs.getTimestamp("inizio").toLocalDateTime());
 				campionato.setFineCampionato(rs.getTimestamp("fine").toLocalDateTime());
-				campionato.setStagioneCampionato(rs.getDate("stagione"));
+				campionato.setStagioneCampionato(rs.getDate("stagione").toLocalDate());
 				campionato.setNumeroGiornateCampionato(rs.getInt("tot_giornate"));
 				campionato.setBandieraCampionato((Blob) rs.getBlob("bandiera"));
 			}
@@ -129,7 +129,7 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 			ps.setString(2, campionato.getNazioneCampionato());
 			ps.setTimestamp(3, Timestamp.valueOf(campionato.getInizioCampionato()));
 			ps.setTimestamp(4, Timestamp.valueOf(campionato.getFineCampionato()));
-			ps.setDate(5, new java.sql.Date(campionato.getStagioneCampionato().getTime()));
+			ps.setDate(5, java.sql.Date.valueOf(campionato.getStagioneCampionato()));
 			ps.setInt(6, campionato.getNumeroGiornateCampionato());
 			ps.setBlob(7, campionato.getBandieraCampionato());
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
@@ -165,11 +165,11 @@ public class CampionatoCrudDao implements CrudDao<CampionatoBean> {
 			ps.setString(2, campionato.getNazioneCampionato());
 			ps.setTimestamp(3, Timestamp.valueOf(campionato.getInizioCampionato()));
 			ps.setTimestamp(4, Timestamp.valueOf(campionato.getFineCampionato()));
-			ps.setDate(5, new java.sql.Date(campionato.getStagioneCampionato().getTime()));
+			ps.setDate(5, java.sql.Date.valueOf(campionato.getStagioneCampionato()));
 			ps.setInt(6, campionato.getNumeroGiornateCampionato());
 			ps.setBlob(7, campionato.getBandieraCampionato());
 			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));	
-			ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));	
+			ps.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));	
 			
 			ps.executeUpdate();
 			
