@@ -15,7 +15,7 @@ public class PartitaService {
 
 		List<PartitaDto> result = partitaDao.findMatchDay();
 		
-		logger.getLogDebug("Sto selezionando le partite di oggi");
+		logger.logDebug("Sto selezionando le partite di oggi");
 
 		return result;
 
@@ -25,7 +25,7 @@ public class PartitaService {
 
 		List<PartitaDto> result = partitaDao.findMatchYesterDay();
 		
-		logger.getLogDebug("Sto selezionando le partite di oggi");
+		logger.logDebug("Sto selezionando le partite di oggi");
 
 		return result;
 
@@ -35,7 +35,7 @@ public class PartitaService {
 
 		List<PartitaDto> result = partitaDao.findMatchTomorrow();
 		
-		logger.getLogDebug("Sto selezionando le partite di oggi");
+		logger.logDebug("Sto selezionando le partite di oggi");
 
 		return result;
 

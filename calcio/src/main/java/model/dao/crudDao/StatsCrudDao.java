@@ -24,7 +24,7 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 	public List<StatsCalciatoreDto> findAll() {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		List<StatsCalciatoreDto> statsCalciatori = new ArrayList<>();
 		
@@ -47,14 +47,14 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 				statsCalciatori.add(statsCalciatore);			
 			}
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return statsCalciatori;
 	}
@@ -63,7 +63,7 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 	public StatsCalciatoreDto update(StatsCalciatoreDto statsCalciatore) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		
 		String query = "UPDATE stats_calciatore SET gol_calciatore = ?, assist_calciatore = ?, calciatore = ?, data_modifica = ? WHERE id_stats = ?";
@@ -80,14 +80,14 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return statsCalciatore;
 	}
@@ -96,7 +96,7 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 	public void delete(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		String query = "DELETE FROM stats_calciatore WHERE id_stats = ?";
 		PreparedStatement ps = null;
@@ -108,14 +108,14 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 	}
 
@@ -123,7 +123,7 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 	public StatsCalciatoreDto insert(StatsCalciatoreDto statsCalciatore) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		
 		String query = "INSERT INTO stats_calciatore (gol_calciatore, assist_calciatore, calciatore, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?)";
@@ -140,14 +140,14 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return statsCalciatore;
 	}
@@ -156,7 +156,7 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 	public StatsCalciatoreDto findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		StatsCalciatoreDto statsCalciatore = new StatsCalciatoreDto();
 		
@@ -169,10 +169,10 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 			
 			ps.setLong(1, id);
 			
-			logger.getLogDebug("Id delle stats dei calciatori recuperato con successo.");
+			logger.logDebug("Id delle stats dei calciatori recuperato con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nel recupero dell'Id delle stats del calciatore", e);
+			logger.logError("Errore nel recupero dell'Id delle stats del calciatore", e);
 		}
 		
 		try {
@@ -185,15 +185,15 @@ public class StatsCrudDao implements CrudDao<StatsCalciatoreDto> {
 				statsCalciatore.setAssistCalciatore(rs.getInt("assist_calciatore"));
 				statsCalciatore.setIdCalciatore(rs.getLong("calciatore"));
 				
-				logger.getLogInfo("Query eseguita con successo.");
+				logger.logInfo("Query eseguita con successo.");
 			}
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return statsCalciatore;
 	}

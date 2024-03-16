@@ -17,7 +17,7 @@ public class AllenatoreCrudService {
 		
 		List<AllenatoreDto> result = allenatoreDao.findAll();
 		
-		logger.getLogDebug("Sto selezionando tutti gli allenatori: ", result);
+		logger.logDebug("Sto selezionando tutti gli allenatori: ", result);
 		
 		return result;
 		
@@ -27,7 +27,7 @@ public class AllenatoreCrudService {
 		
 		AllenatoreDto result = allenatoreDao.findById(id);
 		
-		logger.getLogDebug("Sto selezionando il seguente allenatore: ", result);
+		logger.logDebug("Sto selezionando il seguente allenatore: ", result);
 		
 		return result;
 	}
@@ -36,7 +36,7 @@ public class AllenatoreCrudService {
 		
 		AllenatoreDto result = allenatoreDao.update(allenatore);
 		
-		logger.getLogDebug("Sto aggiornando l'allenatore con le seguenti informazioni: ", result);
+		logger.logDebug("Sto aggiornando l'allenatore con le seguenti informazioni: ", result);
 		
 		return result;
 	}
@@ -45,7 +45,7 @@ public class AllenatoreCrudService {
 		
 		AllenatoreDto result = allenatoreDao.insert(allenatore);
 		
-		logger.getLogDebug("Sto inserendo il seguente allenatore ", result);
+		logger.logDebug("Sto inserendo il seguente allenatore ", result);
 		
 		return result;
 	}
@@ -54,7 +54,7 @@ public class AllenatoreCrudService {
 		
 		allenatoreDao.delete(id);
 		
-		logger.getLogDebug("Sto eliminando l'allenatore con il seguente ID: ", id);
+		logger.logDebug("Sto eliminando l'allenatore con il seguente ID: ", id);
 	}
 
 }

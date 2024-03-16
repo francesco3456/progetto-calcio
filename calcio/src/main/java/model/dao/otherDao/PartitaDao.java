@@ -19,7 +19,7 @@ public class PartitaDao {
 	public List<PartitaDto> findMatchDay() {
 
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		List<PartitaDto> partite = new ArrayList<>();
 
@@ -43,14 +43,14 @@ public class PartitaDao {
 				partite.add(partita);
 			}
 			
-			logger.getLogInfo("Query eseguita con successo");
+			logger.logInfo("Query eseguita con successo");
 
 		} catch (SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 
 		return partite;
 	}
@@ -58,7 +58,7 @@ public class PartitaDao {
 	public List<PartitaDto> findMatchYesterDay() {
 
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		List<PartitaDto> partite = new ArrayList<>();
 
@@ -82,14 +82,14 @@ public class PartitaDao {
 				partite.add(partita);
 			}
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 
 		} catch (SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 
 		return partite;
 	}
@@ -97,7 +97,7 @@ public class PartitaDao {
 	public List<PartitaDto> findMatchTomorrow() {
 
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		List<PartitaDto> partite = new ArrayList<>();
 
@@ -121,14 +121,14 @@ public class PartitaDao {
 				partite.add(partita);
 			}
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 
 		} catch (SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 
 		return partite;
 	}

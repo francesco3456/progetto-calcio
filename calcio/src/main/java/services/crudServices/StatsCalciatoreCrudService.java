@@ -15,7 +15,7 @@ public class StatsCalciatoreCrudService {
 		
 		List<StatsCalciatoreDto> result = statsDao.findAll();
 		
-		logger.getLogDebug("Sto selezionando le stats di tutti i calciatori: ", result);
+		logger.logDebug("Sto selezionando le stats di tutti i calciatori: ", result);
 		
 		return result;
 	}
@@ -24,7 +24,7 @@ public class StatsCalciatoreCrudService {
 		
 		StatsCalciatoreDto result = statsDao.findById(id);
 		
-		logger.getLogDebug("Sto selezionando le stats del seguente calciatore: ", result);
+		logger.logDebug("Sto selezionando le stats del seguente calciatore: ", result);
 		
 		return result;
 	}
@@ -33,7 +33,7 @@ public class StatsCalciatoreCrudService {
 		
 		StatsCalciatoreDto result = statsDao.insert(statsCalciatore);
 		
-		logger.getLogDebug("Sto inserendo le stats del seguente calciatore: ", result);
+		logger.logDebug("Sto inserendo le stats del seguente calciatore: ", result);
 		
 		return result;
 	}
@@ -42,7 +42,7 @@ public class StatsCalciatoreCrudService {
 		
 		StatsCalciatoreDto result = statsDao.update(statsCalciatore);
 		
-		logger.getLogDebug("Sto aggiornando le stats del calciatore con le seguenti informazioni: ", result);
+		logger.logDebug("Sto aggiornando le stats del calciatore con le seguenti informazioni: ", result);
 		
 		return result;
 	}
@@ -51,7 +51,7 @@ public class StatsCalciatoreCrudService {
 		
 		statsDao.delete(id);
 		
-		logger.getLogDebug("Sto eliminando le stats del calciatore con il seguente ID: ", id);
+		logger.logDebug("Sto eliminando le stats del calciatore con il seguente ID: ", id);
 	}
 
 }

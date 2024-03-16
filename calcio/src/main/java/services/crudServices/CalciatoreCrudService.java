@@ -15,7 +15,7 @@ public class CalciatoreCrudService {
 		
 		List<CalciatoreDto> result = calciatoreDao.findAll();
 		
-		logger.getLogDebug("Sto selezionando tutti i calciatori: ", result);
+		logger.logDebug("Sto selezionando tutti i calciatori: ", result);
 		
 		return result;
 	}
@@ -24,7 +24,7 @@ public class CalciatoreCrudService {
 		
 		CalciatoreDto result = calciatoreDao.findById(id);
 		
-		logger.getLogDebug("Sto selezionando il seguente calciatore: ", result);
+		logger.logDebug("Sto selezionando il seguente calciatore: ", result);
 		
 		return result;
 	}
@@ -33,7 +33,7 @@ public class CalciatoreCrudService {
 		
 		CalciatoreDto result = calciatoreDao.insert(calciatore);
 		
-		logger.getLogDebug("Sto inserendo il seguente calciatore: ", result);
+		logger.logDebug("Sto inserendo il seguente calciatore: ", result);
 		
 		return result;
 	}
@@ -42,7 +42,7 @@ public class CalciatoreCrudService {
 		
 		CalciatoreDto result = calciatoreDao.update(calciatore);
 		
-		logger.getLogDebug("Sto aggiornando il calciatore con le seguenti informazioni: ", result);
+		logger.logDebug("Sto aggiornando il calciatore con le seguenti informazioni: ", result);
 		
 		return result;
 	}
@@ -51,7 +51,7 @@ public class CalciatoreCrudService {
 		
 		calciatoreDao.delete(id);
 		
-		logger.getLogDebug("Sto eliminando il calciatore con il seguente ID: ", id);
+		logger.logDebug("Sto eliminando il calciatore con il seguente ID: ", id);
 	}
 
 }

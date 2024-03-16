@@ -15,7 +15,7 @@ public class GiornataCrudService {
 		
 		List<GiornataDto> result = giornataDao.findAll();
 		
-		logger.getLogDebug("Sto selezionando tutte le giornate: ", result);
+		logger.logDebug("Sto selezionando tutte le giornate: ", result);
 		
 		return result;
 	}
@@ -24,7 +24,7 @@ public class GiornataCrudService {
 		
 		GiornataDto result = giornataDao.findById(id);
 		
-		logger.getLogDebug("Sto selezionando la seguente giornata: ", result);
+		logger.logDebug("Sto selezionando la seguente giornata: ", result);
 		
 		return result;
 	}
@@ -33,7 +33,7 @@ public class GiornataCrudService {
 		
 		GiornataDto result = giornataDao.insert(giornata);
 		
-		logger.getLogDebug("Sto inserendo la seguente giornata: ", result);
+		logger.logDebug("Sto inserendo la seguente giornata: ", result);
 		
 		return result;
 	}
@@ -42,7 +42,7 @@ public class GiornataCrudService {
 		
 		GiornataDto result = giornataDao.update(giornata);
 		
-		logger.getLogDebug("Sto aggiornando la giornata con le seguenti informazioni: ", result);
+		logger.logDebug("Sto aggiornando la giornata con le seguenti informazioni: ", result);
 		
 		return result;
 	}
@@ -51,7 +51,7 @@ public class GiornataCrudService {
 		
 		giornataDao.delete(id);
 		
-		logger.getLogDebug("Sto eliminando la giornata con il seguente ID: ", id);
+		logger.logDebug("Sto eliminando la giornata con il seguente ID: ", id);
 	}
 
 }

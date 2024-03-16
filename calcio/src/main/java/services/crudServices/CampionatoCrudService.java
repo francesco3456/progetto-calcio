@@ -15,7 +15,7 @@ public class CampionatoCrudService {
 		
 		List<CampionatoBean> result = campionatoDao.findAll();
 		
-		logger.getLogDebug("Sto selezionando tutti i campionati: ", result);
+		logger.logDebug("Sto selezionando tutti i campionati: ", result);
 		
 		return result;
 	}
@@ -24,7 +24,7 @@ public class CampionatoCrudService {
 		
 		CampionatoBean result = campionatoDao.findById(id);
 		
-		logger.getLogDebug("Sto selezionando il seguente campionato: ", result);
+		logger.logDebug("Sto selezionando il seguente campionato: ", result);
 		
 		return result;
 	}
@@ -33,7 +33,7 @@ public class CampionatoCrudService {
 		
 		CampionatoBean result = campionatoDao.insert(campionato);
 		
-		logger.getLogDebug("Sto inserendo il seguente campionato: ", result);
+		logger.logDebug("Sto inserendo il seguente campionato: ", result);
 		
 		return result;
 	}
@@ -42,7 +42,7 @@ public class CampionatoCrudService {
 		
 		CampionatoBean result = campionatoDao.update(campionato);
 		
-		logger.getLogDebug("Sto aggiornando il campionato con le seguenti informazioni: ", result);
+		logger.logDebug("Sto aggiornando il campionato con le seguenti informazioni: ", result);
 		
 		return result;
 	}
@@ -51,7 +51,7 @@ public class CampionatoCrudService {
 		
 		campionatoDao.delete(id);
 		
-		logger.getLogDebug("Sto eliminando il campionato con il seguente ID: ", id);
+		logger.logDebug("Sto eliminando il campionato con il seguente ID: ", id);
 	}
 
 }

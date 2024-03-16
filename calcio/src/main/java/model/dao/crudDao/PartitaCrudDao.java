@@ -24,7 +24,7 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 	public List<PartitaBean> findAll() {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		List<PartitaBean> partite = new ArrayList<>();
 		
@@ -50,14 +50,14 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 				
 			}
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return partite;
 	}
@@ -66,7 +66,7 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 	public PartitaBean update(PartitaBean partita) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		
 		String query = "UPDATE partita SET risultato = ?, data_partita = ?, squadra_casa = ?, squadra_ospite = ?, giornata = ?, data_modifica = ? WHERE id_partita = ?";
@@ -85,14 +85,14 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return partita;
 	}
@@ -101,7 +101,7 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 	public void delete(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		String query = "DELETE FROM partita WHERE id_partita = ?";
 		PreparedStatement ps = null;
@@ -113,14 +113,14 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 	}
 
@@ -128,7 +128,7 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 	public PartitaBean insert(PartitaBean partita) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		
 		String query = "INSERT INTO partita (risultato, data_partita, squadra_casa, squadra_ospite, giornata, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -147,14 +147,14 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return partita;
 	}
@@ -163,7 +163,7 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 	public PartitaBean findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		PartitaBean partita = new PartitaBean();
 		
@@ -176,10 +176,10 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 			
 			ps.setLong(1, id);
 			
-			logger.getLogDebug("Id della partita recuperato con successo.");
+			logger.logDebug("Id della partita recuperato con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nel recupero dell'Id della partita", e);
+			logger.logError("Errore nel recupero dell'Id della partita", e);
 		}
 		
 		try {
@@ -192,14 +192,14 @@ public class PartitaCrudDao implements CrudDao<PartitaBean> {
 			partita.setIdSquadraOspite(rs.getLong("squadra_ospite"));
 			partita.setIdGiornata(rs.getLong("giornata"));
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return partita;
 	}

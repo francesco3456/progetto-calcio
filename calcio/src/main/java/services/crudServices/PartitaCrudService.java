@@ -15,7 +15,7 @@ public class PartitaCrudService {
 		
 		List<PartitaBean> result = partitaDao.findAll();
 		
-		logger.getLogDebug("Sto selezionando tutti le partite: ", result);
+		logger.logDebug("Sto selezionando tutti le partite: ", result);
 		
 		return result;
 	}
@@ -24,7 +24,7 @@ public class PartitaCrudService {
 		
 		PartitaBean result = partitaDao.findById(id);
 		
-		logger.getLogDebug("Sto selezionando la seguente partita: ", result);
+		logger.logDebug("Sto selezionando la seguente partita: ", result);
 		
 		return result;
 	}
@@ -33,7 +33,7 @@ public class PartitaCrudService {
 		
 		PartitaBean result = partitaDao.insert(partita);
 		
-		logger.getLogDebug("Sto inserendo la seguente partita: ", result);
+		logger.logDebug("Sto inserendo la seguente partita: ", result);
 		
 		return result;
 	}
@@ -42,7 +42,7 @@ public class PartitaCrudService {
 		
 		PartitaBean result = partitaDao.update(partita);
 		
-		logger.getLogDebug("Sto aggiornando la partita con le seguenti informazioni: ", result);
+		logger.logDebug("Sto aggiornando la partita con le seguenti informazioni: ", result);
 		
 		return result;
 	}
@@ -51,7 +51,7 @@ public class PartitaCrudService {
 		
 		partitaDao.delete(id);
 		
-		logger.getLogDebug("Sto eliminando la partita con il seguente ID: ", id);
+		logger.logDebug("Sto eliminando la partita con il seguente ID: ", id);
 	}
 
 }

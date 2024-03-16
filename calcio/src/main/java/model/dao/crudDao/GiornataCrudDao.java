@@ -24,7 +24,7 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 	public List<GiornataDto> findAll() {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		List<GiornataDto> giornate = new ArrayList<>();
 		
@@ -46,14 +46,14 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 				giornate.add(giornata);
 			}
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return giornate;
 	}
@@ -62,7 +62,7 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 	public GiornataDto update(GiornataDto giornata) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		
 		String query = "UPDATE giornata SET inizio = ?, fine = ?, data_modifica = ? WHERE id_giornata = ?";
@@ -78,14 +78,14 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return giornata;
 	}
@@ -94,7 +94,7 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 	public void delete(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		String query = "DELETE FROM giornata WHERE id_giornata = ?";
 		PreparedStatement ps = null;
@@ -106,14 +106,14 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 	}
 
@@ -121,7 +121,7 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 	public GiornataDto insert(GiornataDto giornata) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		
 		String query = "INSERT INTO giornata (inizio, fine, data_creazione, data_modifica) VALUES (?, ?, ?, ?)";
@@ -137,14 +137,14 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogInfo("Errore nella esecuzione della query", e);
+			logger.logInfo("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return giornata;
 	}
@@ -153,7 +153,7 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 	public GiornataDto findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		GiornataDto giornata = new GiornataDto();
 		
@@ -165,10 +165,10 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 			ps = conn.prepareStatement(query);
 			ps.setLong(1, id);
 			
-			logger.getLogDebug("Id della giornata recuperato con successo.");
+			logger.logDebug("Id della giornata recuperato con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nel recupero dell'Id della giornata", e);
+			logger.logError("Errore nel recupero dell'Id della giornata", e);
 		}
 		
 		try {
@@ -180,15 +180,15 @@ public class GiornataCrudDao implements CrudDao<GiornataDto> {
 				giornata.setInizioGiornata(rs.getTimestamp("inizio").toLocalDateTime());
 				giornata.setFineGiornata(rs.getTimestamp("fine").toLocalDateTime());
 				
-				logger.getLogInfo("Query eseguita con successo.");
+				logger.logInfo("Query eseguita con successo.");
 			}
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return giornata;
 	}

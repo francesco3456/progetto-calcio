@@ -24,7 +24,7 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 	public List<ClassificaDto> findAll() {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		List<ClassificaDto> punteggi = new ArrayList<>();
 		
@@ -52,14 +52,14 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 				punteggi.add(punteggio);
 			}
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return punteggi;
 	}
@@ -68,7 +68,7 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 	public ClassificaDto findById(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		ClassificaDto punteggio = new ClassificaDto();
 		
@@ -80,10 +80,10 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 			ps = conn.prepareStatement(query);
 			ps.setLong(1, id);
 			
-			logger.getLogDebug("Id della classifica recuperato con successo.");
+			logger.logDebug("Id della classifica recuperato con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nel recupero dell'Id della classifica", e);
+			logger.logError("Errore nel recupero dell'Id della classifica", e);
 		}
 		
 		try {
@@ -99,14 +99,14 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 			punteggio.setSconfitteSquadra(rs.getInt("lose"));
 			punteggio.setIdSquadra(rs.getLong("squadra_fk"));
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return punteggio;
 	}
@@ -115,7 +115,7 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 	public ClassificaDto update(ClassificaDto punteggio) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		
 		String query = "UPDATE classifica SET punti = ?, gol_fatti = ?, gol_subiti = ?, differenza_reti = ?, win = ?, pari = ?, lose = ?, squadra_fk = ?, data_modifica = ? WHERE id_classifica = ?";
@@ -137,14 +137,14 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return punteggio;
 	}
@@ -153,7 +153,7 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 	public ClassificaDto insert(ClassificaDto punteggio) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		
 		String query = "INSERT INTO classifica (punti, gol_fatti, gol_subiti, differenza_reti, win, pari, lose, squadra_fk, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -175,14 +175,14 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return punteggio;
 	}
@@ -191,7 +191,7 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 	public void delete(Long id) {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		String query = "DELETE FROM classifica WHERE id_classifica = ?";
 		PreparedStatement ps = null;
@@ -203,14 +203,14 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 			
 			ps.executeUpdate();
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 	}
 
 }

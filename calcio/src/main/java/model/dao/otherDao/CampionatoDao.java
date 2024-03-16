@@ -19,7 +19,7 @@ public class CampionatoDao {
 	public List<String> findAllNomiCampionati() {
 		
 		Connection conn = dbConn.getConnection();
-		logger.getLogInfo("Connesso al database");
+		logger.logInfo("Connesso al database");
 		
 		List<String> nomi = new ArrayList<>();
 		
@@ -39,14 +39,14 @@ public class CampionatoDao {
 				nomi.add(campionato.getNomeCampionato());			
 			}
 			
-			logger.getLogInfo("Query eseguita con successo.");
+			logger.logInfo("Query eseguita con successo.");
 			
 		} catch(SQLException e) {
-			logger.getLogError("Errore nella esecuzione della query", e);
+			logger.logError("Errore nella esecuzione della query", e);
 		}
 		
 		dbConn.closeConnection(conn);
-		logger.getLogInfo("Connessione al database terminata");
+		logger.logInfo("Connessione al database terminata");
 		
 		return nomi;
 	}

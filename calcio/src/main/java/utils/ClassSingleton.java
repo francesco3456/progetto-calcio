@@ -1,6 +1,6 @@
 package utils;
 
-public final class ClassSingleton {
+public class ClassSingleton {
 	
 	private static ClassSingleton INSTANCE;
 	

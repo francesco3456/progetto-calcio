@@ -15,7 +15,7 @@ public class SquadraCrudService {
 		
 		List<SquadraDto> result = squadraDao.findAll();
 		
-		logger.getLogDebug("Sto selezionando tutti le squadre: ", result);
+		logger.logDebug("Sto selezionando tutti le squadre: ", result);
 		
 		return result;
 	}
@@ -24,7 +24,7 @@ public class SquadraCrudService {
 		
 		SquadraDto result = squadraDao.findById(id);
 		
-		logger.getLogDebug("Sto selezionando la seguente squadra: ", result);
+		logger.logDebug("Sto selezionando la seguente squadra: ", result);
 		
 		return result;
 	}
@@ -33,7 +33,7 @@ public class SquadraCrudService {
 		
 		SquadraDto result = squadraDao.insert(squadra);
 		
-		logger.getLogDebug("Sto inserendo la seguente squadra: ", result);
+		logger.logDebug("Sto inserendo la seguente squadra: ", result);
 		
 		return result;
 	}
@@ -42,7 +42,7 @@ public class SquadraCrudService {
 		
 		SquadraDto result = squadraDao.update(squadra);
 		
-		logger.getLogDebug("Sto aggiornando la squadra con le seguenti informazioni ", result);
+		logger.logDebug("Sto aggiornando la squadra con le seguenti informazioni ", result);
 		
 		return result;
 	}
@@ -51,7 +51,7 @@ public class SquadraCrudService {
 		
 		squadraDao.delete(id);
 		
-		logger.getLogDebug("Sto eliminando la squadra con il seguente ID: ", id);
+		logger.logDebug("Sto eliminando la squadra con il seguente ID: ", id);
 	}
 
 }

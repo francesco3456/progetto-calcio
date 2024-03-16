@@ -15,7 +15,7 @@ public class ClassificaCrudService {
 		
 		List<ClassificaDto> result = classificaDao.findAll();
 		
-		logger.getLogDebug("Sto selezionando tutti i punteggi: ", result);
+		logger.logDebug("Sto selezionando tutti i punteggi: ", result);
 		
 		return result;
 	}
@@ -24,7 +24,7 @@ public class ClassificaCrudService {
 		
 		ClassificaDto result = classificaDao.findById(id);
 		
-		logger.getLogDebug("Sto selezionando il seguente punteggio: ", result);
+		logger.logDebug("Sto selezionando il seguente punteggio: ", result);
 		
 		return result;
 	}
@@ -33,7 +33,7 @@ public class ClassificaCrudService {
 		
 		ClassificaDto result = classificaDao.insert(punteggio);
 		
-		logger.getLogDebug("Sto inserendo il seguente punteggio: ", result);
+		logger.logDebug("Sto inserendo il seguente punteggio: ", result);
 		
 		return result;
 	}
@@ -42,7 +42,7 @@ public class ClassificaCrudService {
 		
 		ClassificaDto result = classificaDao.update(classifica);
 		
-		logger.getLogDebug("Sto aggiornando il punteggio con le seguenti informazioni: ", result);
+		logger.logDebug("Sto aggiornando il punteggio con le seguenti informazioni: ", result);
 		
 		return result;
 	}
@@ -51,7 +51,7 @@ public class ClassificaCrudService {
 		
 		classificaDao.delete(id);
 		
-		logger.getLogDebug("Sto eliminando il punteggio con il seguente ID: ", id);
+		logger.logDebug("Sto eliminando il punteggio con il seguente ID: ", id);
 	}
 
 }

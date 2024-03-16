@@ -14,7 +14,7 @@ public class CampionatoService {
 		
 		List<String> result = campionatoDao.findAllNomiCampionati();
 		
-		logger.getLogDebug("Sto selezionando tutti i nomi dei campionati", result);
+		logger.logDebug("Sto selezionando tutti i nomi dei campionati", result);
 		
 		return result;
 	}
