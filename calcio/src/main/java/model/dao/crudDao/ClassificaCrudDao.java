@@ -156,7 +156,7 @@ public class ClassificaCrudDao implements CrudDao<ClassificaDto> {
 		logger.logInfo("Connesso al database");
 		
 		
-		String query = "INSERT INTO classifica (punti, gol_fatti, gol_subiti, differenza_reti, win, pari, lose, squadra_fk, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO classifica (punti, golFatti, goalSubiti, differenza_reti, win, pari, lose, squadra_fk, data_creazione, data_modifica) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = null;
 		
 		try {
