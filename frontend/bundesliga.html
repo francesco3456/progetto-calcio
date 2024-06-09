@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bundesliga.css">
+    <script src="bundesliga.js"></script>
+</head>
+<body>
+    <div class="bundesliga-page">
+        <div class="header">
+            <div class="back">
+                <button class="button-back" onclick="toBack()">←</button>
+            </div>
+            <div class="titolo"></div>
+            <div class="right">right</div>
+        </div>
+        <div class="footer">
+            <div class="menu-giornate">
+                <div class="menu">
+                    <button class="menu-btn">Giornate</button>
+                    <ul class="menu-list" id="menu-list"></ul>
+                </div>
+            </div>
+            <div class="classifica">
+                <table class="classifica" id="classifica">
+                    <thead>
+                        <tr>
+                            <th>Squadra</th>
+                            <th>Punti</th>
+                            <th>Win</th>
+                            <th>Pari</th>
+                            <th>Lose</th>
+                            <th>Gol Fatti</th>
+                            <th>Gol Subiti</th>
+                            <th>Differenza Reti</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="partite-selezionate">
+                <table class="partite" id="partite">
+                    <thead>
+                        <tr>
+                            <th>Home</th>
+                            <th>Risultato</th>
+                            <th>Away</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
