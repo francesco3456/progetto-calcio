@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="newcastle.css">
+</head>
+<body>
+
+    <div class="newcastle-page">
+        <div class="header">
+
+            <div class="back">
+            <button class="button-back" onclick="toBack()">←</button>
+            </div>
+
+            <div class="center"></div>
+            <div class="right">
+                <div class="allenatore">
+                </div>
+                <div class="nome">
+                    <a href="#" id="openModal-allenatore" onclick="openModal('modal-allenatore')">Eddie Howe</a>
+                    <div id="modal-allenatore" class="modal">
+                        <button onclick="closeModal('modal-allenatore')">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="portieri">
+                <h3>Portieri</h3>
+                <div id="portieri-container"></div>
+            </div>
+            <div class="difensori">
+                <h3>Difesa</h3>
+                <div id="difensori-container"></div>
+            </div>
+            <div class="centrocampo">
+                <h3>Centrocampo</h3>
+                <div id="centrocampo-container"></div>
+        </div>
+        <div class="attacco">
+            <h3>Attacco</h3>
+            <div id="attacco-container"></div>
+        </div>
+    </div>
+
+    <script src="newcastle.js"></script>
+</body>
+</html>
