@@ -1,0 +1,110 @@
+
+.homePage {
+    height: 1000px;
+    background-image: url('C:/Users/franc/Documents/progetto-Calcio-versione-microservizi/frontend/images_home/sfondo_homePage.jpg') ;
+}
+
+.header {
+    height:300px;
+    width:100%;
+    display: flex;
+}
+.footer {
+    height:300px;
+    width: 100%;
+    display: flex;
+}
+
+.menu {
+    height: 100px;
+    width:400px;
+    text-align: left;
+}
+.openMenu {
+    position: relative;
+    display: inline-block;
+}
+  .menu-btn {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-left: 40px;
+    margin-top: 50px;
+  }
+  
+  .menu-list {
+    display: none;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .menu-list li {
+    list-style: none;
+  }
+  
+  .menu-list li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .menu:hover .menu-list {
+    display: block;
+    margin-left: 40px;
+  }
+  
+.center {
+    height: auto;
+    width:400px;
+    text-align: center;
+}
+.right {
+    height: auto;
+    width:400px;
+    text-align: right;
+}
+
+.matchYesterday {
+    height: auto;
+    width:500px;
+    text-align: center;
+}
+.ieri {
+    width: 75%;
+    border-collapse: collapse;
+    margin: 40px;
+    padding: 5px;
+  }
+  
+  .ieri th, .ieri td {
+    border: 5px solid #ddd;
+    padding: 5x;
+    text-align: center;
+  }
+  
+  .ieri td {
+    background-color: #f2f2f2;
+  }
+  .ieri th {
+    background-color: darkolivegreen;
+  }
+  
+  .ieri tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+.matchDay {
+    height: auto;
+    width:500px;
+    text-align: center;
+}
+.matchTomorrow {
+    height: auto;
+    width:500px;
+    text-align: center;
+}
