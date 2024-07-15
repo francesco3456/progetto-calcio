@@ -1,0 +1,278 @@
+.augusta-page {
+    height: 2500px;
+    background: url('C:/Users/franc/Documents/progetto-Calcio-versione-microservizi/frontend/bundesliga/bundes.jpg');
+}
+
+.header, .footer {
+    height: 300px;
+    width: 100%;
+    display: flex;
+}
+
+.back {
+    height: 100px;
+    width: 400px;
+    margin-left: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.button-back {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: flex-start;
+}
+
+.center {
+    height: auto;
+    width: 400px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 150px;
+    background-image: url('images_augusta/logo_augusta.jpg');
+    background-repeat: no-repeat;
+}
+
+.right {
+    height: auto;
+    width: 400px;
+}
+
+.allenatore {
+    height: 300px;
+    width: 390px;
+    background-image: url('images_augusta/');
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.nome {
+    width: 150px;
+    margin-left: 180px;
+    margin-top: -76px;
+    font-weight: bold;
+    background-color: white;
+    text-align: center;
+}
+
+.nome a {
+    text-decoration: none;
+    color: black;
+}
+
+.nome a:hover {
+    color: red;
+}
+
+.modal {
+    display: none;
+}
+
+.portieri {
+    width: 250px;
+    margin-left: 150px;
+    margin-top: 44px;
+}
+
+.difensori, .centrocampo, .attacco {
+    width: 250px;
+    margin-left: 120px;
+    margin-top: 44px;
+}
+
+.portieri h3, .difensori h3,.centrocampo h3, .attacco h3 {
+    display: flex;
+    width: auto;
+    position: relative;
+    background-color: white;
+    justify-content: center;
+    margin-right: 136px;
+    margin-left: -89px;
+    top: 85px;
+    right: 20px;
+}
+
+.nome-calciatore {
+    width: 150px;
+    margin-left: 180px;
+    margin-top: -76px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.nome-calciatore a:hover {
+    color: red;
+}
+
+.portieri a, .difensori a, .centrocampo a, .attacco a {
+    display: flex;
+    width: 100px;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    margin-left: -129px;
+    margin-top: 358px;
+    padding-left: 48px;
+}
+
+.portieri a:hover, .difensori a:hover, .centrocampo a:hover, .attacco a:hover {
+    color: red;
+}
+
+#modal-portieri, #modal-difensori, #modal-centrocampo, #modal-attacco {
+    margin-left: -472px;
+}
+
+.calciatore {
+    width: 200px;
+    height: 300px;
+    background-size: 198px;
+    background-position: center;
+    margin-bottom: -80px;
+    display: flex;
+    right: 109px;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+.nome-calciatore a {
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    left: 1px;
+    top: -98px;
+    white-space: nowrap;
+    text-align: center;
+    display: flex;
+}
+
+a#link-0, a#link-2 {
+    /* Carnesecchi, Scalvini */
+    left: -50px;
+    width: 151px;
+    top: -84px;
+}
+
+a#link-1 {
+    /* Musso */
+    left: -50px;
+    width: 151px;
+    top: -90px;
+}
+
+a#link-3 {
+    /* Hien */
+    left: -50px;
+    width: 151px;
+    top: -83px;
+}
+
+a#link-4 {
+    /* Djimsiti */
+    top: -87px;
+    left: -50px;
+    width: 151px;
+}
+
+a#link-5, a#link-6, a#link-8 {
+    /* Kolasinac, Toloi, Ederson */
+    top: -84px;
+    left: -50px;
+    width: 151px;
+}
+
+a#link-13 {
+    /* Miranchuk */
+    top: -95px;
+    left: -50px;
+    width: 151px;
+}
+
+ a#link-12 {
+    top: -74px;
+    left: -50px;
+    width: 151px;
+}
+
+a#link-7, a#link-11 {
+    /* De Roon, Hateboer */
+    top: -84px;
+    left: -50px;
+    width: 151px;
+}
+
+a#link-9, a#link-10 {
+    /* Pasalic, Zappacosta */
+    top: -85px;
+    left: -50px;
+    width: 151px;
+}
+
+a#link-14 {
+    /* Lookman */
+    top: -75px;
+    left: -50px;
+    width: 151px;
+}
+
+a#link-15, a#link-16 {
+    /* Scamacca, El Bilal Toure */
+    top: -80px;
+    left: -50px;
+    width: 151px;
+}
+
+.modal-calciatore {
+    display: none;
+    position: relative;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: cadetblue;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+    left: -82px;
+    top: -49px;
+    width: 216px;
+}
+
+.modal-calciatore button {
+    margin-top: 10px;
+}
+
+div#modal-2.modal-calciatore, div#modal-9.modal-calciatore, div#modal-10.modal-calciatore, div#modal-11.modal-calciatore {
+    top: -42px;
+}
+
+div#modal-3.modal-calciatore, div#modal-5.modal-calciatore, div#modal-8.modal-calciatore, div#modal-12.modal-calciatore {
+    top: -54px;
+}
+
+div#modal-4.modal-calciatore {
+    top: -57px;
+}
+
+div#modal-7.modal-calciatore {
+    top: -41px;
+}
+
+div#modal-13.modal-calciatore {
+    top: -52px;
+}
+
+div#modal-14.modal-calciatore {
+    top: -33px;
+}
+
+div#modal-15.modal-calciatore {
+    top: -40px;
+}
